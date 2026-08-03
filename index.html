@@ -15,7 +15,7 @@
   <!-- ==================== ヘッダー ==================== -->
   <header id="app-header">
     <h1>埼玉県 湧水ポテンシャルマップ</h1>
-    <p class="header-sub">既知湧水地点・1997年湿地台帳・湧水ポテンシャルスコア（実データ） × 週別降水量（ダミーデータ）</p>
+    <p class="header-sub">既知湧水地点・1997年湿地台帳・湧水ポテンシャルスコア・週別降水量（すべて実データ）</p>
     <button id="toggle-layer-panel" class="icon-button" title="レイヤーパネルの表示切替">☰ レイヤー</button>
     <button id="toggle-table-panel-header" class="icon-button" title="テーブルの表示切替">▤ テーブル</button>
   </header>
@@ -154,6 +154,10 @@
           <div class="legend legend-sequential" id="legend-rainfall">
             <span>少</span><span class="legend-bar legend-bar-orange"></span><span>多</span>
           </div>
+          <p class="panel-note panel-note-inline">
+            気象庁「過去の気象データ検索」の最寄りアメダス観測所（日降水量）を市町村ごとに週合算した実データ。
+            皆野町/東秩父村は「ときがわ」、長瀞町/寄居町は「寄居」観測所を共用しているため同じ値になります。
+          </p>
         </div>
       </section>
 
@@ -188,9 +192,9 @@
 
       <p class="panel-note">
         ※ 既知湧水地点（環境省公表データ）・1997年湿地湧水地台帳（Atlas Eco Saitama公表データ）・
-        湧水ポテンシャルスコア（横瀬町・秩父地域のパイロットエリアのみ、DEM等から算出）は実データです。
-        週別降水量は現状ダミーデータです。実データへの
-        差し替え手順は <a href="README.md" target="_blank" rel="noopener">web/README.md</a> を参照してください。
+        湧水ポテンシャルスコア（横瀬町・秩父地域のパイロットエリアのみ、DEM等から算出）・
+        週別降水量（気象庁の最寄りアメダス観測所データから算出）は実データです。データの詳細・
+        更新手順は <a href="README.md" target="_blank" rel="noopener">web/README.md</a> を参照してください。
       </p>
     </aside>
 

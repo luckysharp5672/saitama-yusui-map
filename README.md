@@ -21,8 +21,10 @@ Vanilla JS + CDNライブラリのみ）で、GitHub Pages にそのまま公開
   パイロットエリアのみ）。** 国土地理院DEM5A・自前計算のTWI/HAND・産総研の地質境界データ・
   既知湧水地点KDEから算出しています。詳細は
   [「湧水ポテンシャルスコアの算出について」](#湧水ポテンシャルスコアの算出について)を参照してください。
-- **週別降水量（rainfall_weekly.json）のみダミーデータです。** 実データへの差し替え手順は
-  本ファイル下部を参照してください。
+- **週別降水量（rainfall_weekly.json）も実データです。** 気象庁「過去の気象データ検索」の
+  最寄りアメダス観測所（日降水量）を市町村ごとに週合算しています
+  （[scripts/fetch_rainfall.js](scripts/fetch_rainfall.js)、詳細は
+  [data/README.md](data/README.md) 参照）。
 - **現地調査記録（field_survey.geojson）は、あなたがこのアプリを使って記録していくデータです。**
   上記の実データ（springs.geojson / wetland_1997.geojson）は書き換えず、現地で確認した
   位置・現況を別レイヤーとして重ねて記録できます。使い方は
@@ -35,7 +37,7 @@ Vanilla JS + CDNライブラリのみ）で、GitHub Pages にそのまま公開
   2. 1997年湿地湧水地台帳（歴史データ、実データ。カテゴリ別5色、「湧水・井戸」のみ絞り込み可）
   3. 湧水ポテンシャルスコア（青の連続配色ヒートマップ、スコア閾値で絞り込み可、実データ＝パイロットエリアのみ）
   4. 背景地形（陰影段彩図・傾斜量図、国土地理院タイル）
-  5. 週別降水量（オレンジの連続配色、週スライダー＋再生ボタンでアニメーション、ダミーデータ）
+  5. 週別降水量（オレンジの連続配色、週スライダー＋再生ボタンでアニメーション、実データ）
   6. 現地調査記録（✓確認済み/！要再訪のバッジ。あなたが記録するデータ、詳細は下記）
 - **地図**: 湧水地点・1997年湿地台帳・現地調査記録の各地点クリックでポップアップ、
   ポテンシャルグリッドクリックで右パネルにスコア内訳（TWI・HAND・地質境界距離・曲率・湧水KDE）を表示
@@ -193,10 +195,18 @@ node compute_potential.js          # data/potential_grid.geojson を生成
 
 ### 4. 週別降水量（rainfall_weekly.json）
 
-気象庁の解析雨量・メッシュ平年値等から、地域（市町村 or 降水量メッシュ）単位で
-週合算したデータを [data/README.md](data/README.md) 記載のJSON形式で用意し、
-`data/rainfall_weekly.json` を差し替えてください（変換スクリプトは未提供のため、
-データ提供時に別途 `scripts/` へ追加する想定です）。
+実装済みです。最新データに更新したい場合は以下を実行してください。
+
+```bash
+cd scripts
+node fetch_rainfall.js   # 依存パッケージ不要（Node.js 18+）
+```
+
+気象庁「過去の気象データ検索」から対象期間・観測所の日降水量を取得し週合算します。
+観測所の割り当て（市町村→最寄りアメダス）や対象期間は
+[scripts/fetch_rainfall.js](scripts/fetch_rainfall.js) 冒頭の `REGIONS` / `START_DATE`
+で管理しています。気象庁サイトはページ構造が変わるとパース処理が壊れる可能性がある点に
+注意してください（詳細は [data/README.md](data/README.md) 参照）。
 
 ## ファイル構成
 
@@ -218,8 +228,15 @@ web/
 │   ├── field_survey.geojson
 │   └── README.md    各データの形式・出典
 └── scripts/
-    ├── geocode_springs.js     環境省データの取得・ジオコーディング（springs.geojson生成、実装済み）
-    ├── fetch_wetland_1997.js  1997年湿地台帳の取得（wetland_1997.geojson生成、実装済み）
-    ├── csv_to_geojson.py      自前CSVからの変換（緯度経度が既知の場合）
-    └── compute_potential.py   湧水ポテンシャルスコア算出パイプラインの雛形
+    ├── geocode_springs.js        環境省データの取得・ジオコーディング（springs.geojson生成、実装済み）
+    ├── fetch_wetland_1997.js     1997年湿地台帳の取得（wetland_1997.geojson生成、実装済み）
+    ├── fetch_rainfall.js         気象庁データの取得・週合算（rainfall_weekly.json生成、実装済み）
+    ├── fetch_dem.js              DEM取得（scripts/raw/へ、実装済み）
+    ├── dem_tiles.js              国土地理院DEMタイルの取得・合成（共通モジュール）
+    ├── hydrology.js              傾斜・曲率・TWI・HAND算出（共通モジュール）
+    ├── extract_geology_boundary.js  地質境界抽出（geology_boundary.geojson生成、実装済み）
+    ├── zip_reader.js / shapefile_reader.js  ZIP/Shapefileの自前パーサー（共通モジュール）
+    ├── compute_potential.js     湧水ポテンシャルスコア算出（potential_grid.geojson生成、実装済み）
+    ├── csv_to_geojson.py         自前CSVからの変換（緯度経度が既知の場合）
+    └── compute_potential.py      湧水ポテンシャルスコア算出パイプラインの雛形（設計参考、実装は.jsを参照）
 ```

@@ -1,10 +1,8 @@
 # data/ ディレクトリについて
 
-フロントエンドが `fetch()` で直接読み込む静的データ一式です。`springs.geojson`・
-`wetland_1997.geojson`・`potential_grid.geojson`・`geology_boundary.geojson`・
-`field_survey.geojson` は実データ、`rainfall_weekly.json` のみダミーデータ（簡略化した
-架空の値）です。`rainfall_weekly.json` の実データへの差し替え方法は
-[../README.md](../README.md) の「実データへの差し替え」を参照してください。
+フロントエンドが `fetch()` で直接読み込む静的データ一式です。`rainfall_weekly.json` を
+含め、現在は全ファイルが実データです（`field_survey.geojson` はあなたが記録していく
+運用データのため初期状態は空）。
 
 ## springs.geojson — 既知湧水地点（実データ）
 
@@ -172,11 +170,11 @@ node compute_potential.js          # 上記2つの出力から potential_grid.ge
 `compute_potential.js` それぞれの `BBOX` / `OUTPUT_GRID` 定数を変更してください
 （DEMタイル数・計算量が面積に比例して増える点に注意）。
 
-## rainfall_weekly.json — 週別降水量
+## rainfall_weekly.json — 週別降水量（実データ）
 
 ```json
 {
-  "meta": { "description": "...", "unit": "mm", "weeks": ["2025-01-06", "2025-01-13", ...] },
+  "meta": { "description": "...", "unit": "mm", "weeks": ["2025-01-05", "2025-01-12", ...] },
   "regions": [
     {
       "code": "yokoze", "name": "横瀬町",
@@ -187,14 +185,37 @@ node compute_potential.js          # 上記2つの出力から potential_grid.ge
 }
 ```
 
-`meta.weeks[i]` と各 `regions[].weekly[i]` が対応します（週の開始日、月曜始まり想定）。
-現在のダミー版は市町村単位の簡易矩形ポリゴン7地域 × 52週分です。
+`meta.weeks[i]` と各 `regions[].weekly[i]` が対応します（週の開始日=日曜、52週分、
+2025年）。市町村単位の簡易矩形ポリゴン7地域（既存のダミー版と同じジオメトリ）。
 
-**出典（実データ利用時）**: 気象庁 解析雨量・メッシュ平年値等。地域区分は市町村単位、
-または気象庁の降水量メッシュ単位に置き換えてください。実データ提供時は
-`scripts/` 配下に変換スクリプトを追加してください（現状は未実装）。
+**取得方法**: 気象庁「過去の気象データ検索」（`https://www.data.jma.go.jp/obd/stats/etrn/`）
+から、各市町村の代表点に最も近いアメダス観測所（気象官署含む）の日降水量を月単位で
+HTML取得し、週合算したもの。公式のダウンロードAPI/CSVエンドポイントが無いため、
+[web/scripts/fetch_rainfall.js](../scripts/fetch_rainfall.js) が「日ごとの値」ページを
+月ごとに取得して正規表現でパースしている（気象庁サイトの構造変更で動かなくなる可能性がある
+点に留意）。
+
+| 市町村 | 観測所 | 距離 |
+|---|---|---|
+| 秩父市 | 浦山 | 1.4km |
+| 横瀬町 | 秩父 | 2.6km |
+| 皆野町 | ときがわ | 6.1km |
+| 長瀞町 | 寄居 | 5.0km |
+| 小鹿野町 | 上吉田 | 5.9km |
+| 東秩父村 | ときがわ | 5.9km |
+| 寄居町 | 寄居 | 9.1km |
+
+観測所は市町村ごとに設置されているわけではないため、各市町村の代表点から直線距離で
+最も近いアメダス観測所を割り当てている。**皆野町/東秩父村（ともに「ときがわ」）、
+長瀞町/寄居町（ともに「寄居」）は最寄り観測所が同一のため、週別降水量も完全に一致する。**
+
+再取得する場合:
+
+```bash
+cd scripts
+node fetch_rainfall.js
+```
 
 ## ライセンス・出典に関する注意
 
 上記いずれの実データも、公開元の利用規約に従い出典表記・二次利用条件を遵守してください。
-`rainfall_weekly.json`（ダミーデータ）は実在の観測値とは無関係の架空の値です。
