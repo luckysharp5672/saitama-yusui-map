@@ -291,6 +291,50 @@ export function updateRainfallWeek(map, rainfallData, weekIndex) {
   if (source) source.setData(buildRainfallGeoJSON(rainfallData, weekIndex));
 }
 
+// ---- 選択強調表示（下部テーブルの行クリック時に、対応するピンを地図上で目立たせる） ----
+
+/**
+ * 選択地点を強調表示するためのレイヤーを追加する。他のポイント/ポリゴンレイヤーより
+ * 後に追加することで最前面に描画されるようにする（main.js側での呼び出し順に依存）。
+ * 二重の輪（外側の太いリング＋内側の点）で、他のマーカーより一回り大きく目立つようにしてある。
+ */
+export function addHighlightLayer(map) {
+  map.addSource("highlight", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+
+  map.addLayer({
+    id: "highlight-outer",
+    type: "circle",
+    source: "highlight",
+    paint: {
+      "circle-radius": 16,
+      "circle-color": "rgba(227, 73, 72, 0.15)",
+      "circle-stroke-width": 3,
+      "circle-stroke-color": "#e34948"
+    }
+  });
+  map.addLayer({
+    id: "highlight-inner",
+    type: "circle",
+    source: "highlight",
+    paint: {
+      "circle-radius": 4,
+      "circle-color": "#e34948",
+      "circle-stroke-width": 1.5,
+      "circle-stroke-color": "#ffffff"
+    }
+  });
+}
+
+/** 強調表示する地点を設定する。lngLat に null を渡すと強調を消す。 */
+export function setHighlight(map, lngLat) {
+  const source = map.getSource("highlight");
+  if (!source) return;
+  const features = lngLat
+    ? [{ type: "Feature", geometry: { type: "Point", coordinates: lngLat }, properties: {} }]
+    : [];
+  source.setData({ type: "FeatureCollection", features });
+}
+
 // ---- 共通: レイヤー表示/非表示・不透明度 ----
 
 export function setLayerVisible(map, layerId, visible) {

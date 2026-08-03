@@ -5,12 +5,18 @@
 // 「列定義 + 行データ」を受け取って描画するだけの汎用コンポーネントにしてある。
 // ============================================================
 
+/** 行を一意に識別するキーを作る（id/cell_idがあればそれを、無ければ座標を使う） */
+function rowKey(row) {
+  return row.id ?? row.cell_id ?? `${row.lng},${row.lat}`;
+}
+
 /**
  * テーブルコントローラを作成する。
  * @param {HTMLTableElement} tableEl - <table id="data-table"> 要素
  * @param {HTMLElement} rowCountEl - 件数表示用要素
+ * @param {(row: object) => void} [onRowSelect] - 行クリック時に呼ばれるコールバック（地図側のピン強調に使う）
  */
-export function createTableController(tableEl, rowCountEl) {
+export function createTableController(tableEl, rowCountEl, onRowSelect) {
   const theadRow = tableEl.querySelector("thead tr");
   const tbody = tableEl.querySelector("tbody");
 
@@ -18,6 +24,7 @@ export function createTableController(tableEl, rowCountEl) {
   let currentRows = [];
   let sortKey = null;
   let sortDir = "asc"; // "asc" | "desc"
+  let selectedKey = null;
 
   function render() {
     // ---- ヘッダー描画 ----
@@ -60,11 +67,17 @@ export function createTableController(tableEl, rowCountEl) {
     const fragment = document.createDocumentFragment();
     sortedRows.forEach((row) => {
       const tr = document.createElement("tr");
+      if (rowKey(row) === selectedKey) tr.classList.add("selected-row");
       currentColumns.forEach((col) => {
         const td = document.createElement("td");
         const v = row[col.key];
         td.textContent = v === undefined || v === null ? "" : String(v);
         tr.appendChild(td);
+      });
+      tr.addEventListener("click", () => {
+        selectedKey = rowKey(row);
+        render();
+        if (onRowSelect) onRowSelect(row);
       });
       fragment.appendChild(tr);
     });
@@ -79,6 +92,7 @@ export function createTableController(tableEl, rowCountEl) {
       currentColumns = columns;
       currentRows = rows;
       sortKey = null;
+      selectedKey = null;
       render();
     },
     /** 現在ソート済みの行データを取得する（CSV/GeoJSONダウンロード用） */

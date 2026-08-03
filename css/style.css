@@ -192,6 +192,9 @@ button:hover { background: var(--border); }
 #data-table th.sort-desc::after { content: " \25BC"; }
 #data-table td { font-variant-numeric: tabular-nums; }
 #data-table tbody tr:hover { background: var(--surface-2); }
+#data-table tbody tr { cursor: pointer; }
+#data-table tbody tr.selected-row { background: rgba(227, 73, 72, 0.12); }
+#data-table tbody tr.selected-row:hover { background: rgba(227, 73, 72, 0.18); }
 
 /* ---------- MapLibre ポップアップ内の簡易スタイル ---------- */
 .spring-popup { max-width: 260px; }

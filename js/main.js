@@ -7,6 +7,7 @@ import {
   buildInitialStyle, addTerrainLayers, addPotentialLayer, setPotentialThreshold,
   addSpringsLayer, buildSpringPopupHTML, addRainfallLayer, updateRainfallWeek,
   addWetland1997Layer, setWetland1997CategoryFilter, buildWetland1997PopupHTML,
+  addHighlightLayer, setHighlight,
   setLayerVisible, setLayerOpacity
 } from "./layers.js";
 import { createTableController } from "./table.js";
@@ -39,10 +40,22 @@ const state = {
   wetlandOnlySprings: false
 };
 
+/**
+ * 下部テーブルの行がクリックされたときの処理。
+ * 選択地点を地図上でリング状に強調表示し、その地点が画面内に収まるよう地図を移動する。
+ */
+function handleTableRowSelect(row) {
+  if (row.lng == null || row.lat == null) return;
+  const lngLat = [row.lng, row.lat];
+  setHighlight(map, lngLat);
+  map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13), duration: 600 });
+}
+
 // ---- テーブルコントローラ ----
 const tableController = createTableController(
   document.getElementById("data-table"),
-  document.getElementById("table-row-count")
+  document.getElementById("table-row-count"),
+  handleTableRowSelect
 );
 
 const SPRINGS_COLUMNS = [
@@ -146,6 +159,7 @@ map.on("load", async () => {
   addSpringsLayer(map, springs);
   addRainfallLayer(map, rainfall, 0);
   addWetland1997Layer(map, wetland);
+  addHighlightLayer(map); // 他のレイヤーより後に追加し、最前面に描画されるようにする
 
   updateWeekLabel();
   refreshTable();
@@ -316,6 +330,7 @@ document.querySelectorAll(".tab-button").forEach((btn) => {
     btn.classList.add("active");
     state.activeTab = btn.dataset.tab;
     refreshTable();
+    setHighlight(map, null); // タブを切り替えたら、別データセットの地点を指したままにならないよう強調表示を消す
   });
 });
 
