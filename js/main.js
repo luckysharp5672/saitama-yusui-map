@@ -578,11 +578,15 @@ document.querySelectorAll(".tab-button").forEach((btn) => {
   });
 });
 
-document.getElementById("toggle-table-panel").addEventListener("click", (e) => {
+/** テーブルパネルの表示/非表示を切り替える（下部パネル内のボタン・アプリヘッダーのボタン共通） */
+function toggleTablePanel() {
   const panel = document.getElementById("table-panel");
   panel.classList.toggle("collapsed");
-  e.target.textContent = panel.classList.contains("collapsed") ? "▴" : "▾";
-});
+  const collapsed = panel.classList.contains("collapsed");
+  document.getElementById("toggle-table-panel").textContent = collapsed ? "▴" : "▾";
+}
+document.getElementById("toggle-table-panel").addEventListener("click", toggleTablePanel);
+document.getElementById("toggle-table-panel-header").addEventListener("click", toggleTablePanel);
 
 // ---- CSVダウンロード: テーブルに表示中のデータをそのまま出力 ----
 document.getElementById("btn-download-csv").addEventListener("click", () => {

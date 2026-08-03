@@ -167,7 +167,8 @@ button:hover { background: var(--border); }
   flex-direction: column;
   transition: height 0.15s ease;
 }
-#table-panel.collapsed { height: 40px; }
+/* 完全に非表示にする（ヘッダー帯も含めて隠す。再表示はアプリヘッダーの「▤ テーブル」ボタンから） */
+#table-panel.collapsed { height: 0; border-top: none; overflow: hidden; }
 #table-panel.collapsed #table-panel-body { display: none; }
 
 .table-panel-header {
@@ -204,7 +205,7 @@ button:hover { background: var(--border); }
 /* ---------- MapLibre ポップアップ内の簡易スタイル ---------- */
 .spring-popup {
   max-width: 260px;
-  max-height: 320px;
+  max-height: 160px;
   overflow-y: auto;
   /* 複数ポップアップ同時表示時に、内容が長い地点があっても画面を占領しすぎないようにする */
 }
