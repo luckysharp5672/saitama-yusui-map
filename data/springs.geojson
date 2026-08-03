@@ -1,0 +1,2631 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.604736,
+          35.941662
+        ]
+      },
+      "properties": {
+        "id": "spring_001",
+        "name": "三貫清水",
+        "kana": "さんがんしみず",
+        "municipality": "さいたま市",
+        "address": "さいたま市北区奈良町52-11",
+        "description": "太田道灌がこの清水で点てたお茶に感激し、三貫文の褒美を出したと伝えられる。涵養区域の保全と湧水の回復を目標として、雨水浸透施設設置など周辺の整備が実施された。",
+        "access": "◎",
+        "conservation_activity": "市民団体が周辺の月1回の清掃活動や水質調査等を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.645813,
+          35.920437
+        ]
+      },
+      "properties": {
+        "id": "spring_002",
+        "name": "大和田緑地公園",
+        "kana": "おおわだりょくちこうえん",
+        "municipality": "さいたま市",
+        "address": "さいたま市見沼区大和田町1-287",
+        "description": "周辺の斜面林から湧出している。",
+        "access": "◎",
+        "conservation_activity": "市民団体が周辺の斜面林の管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.653564,
+          35.848885
+        ]
+      },
+      "properties": {
+        "id": "spring_003",
+        "name": "白幡沼",
+        "kana": "しらはたぬま",
+        "municipality": "さいたま市",
+        "address": "さいたま市南区白幡2丁目",
+        "description": "台地からの湧水を利用した水田灌漑用のため池で、水辺には葦が被い茂っている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.490036,
+          35.917614
+        ]
+      },
+      "properties": {
+        "id": "spring_004",
+        "name": "弁財天",
+        "kana": "べんざいてん",
+        "municipality": "川越市",
+        "address": "小仙波町",
+        "description": "仙人が竜神のために残した池との伝説がある池の湧水。",
+        "access": "◎",
+        "conservation_activity": "年2回水量・水質の調査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.439453,
+          35.937366
+        ]
+      },
+      "properties": {
+        "id": "spring_005",
+        "name": "八幡神社",
+        "kana": "はちまんじんじゃ",
+        "municipality": "川越市",
+        "address": "川越市小堤288",
+        "description": "八幡神社の崖下から湧出している。",
+        "access": "◎",
+        "conservation_activity": "年2回水量・水質の調査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.45369,
+          35.937519
+        ]
+      },
+      "properties": {
+        "id": "spring_006",
+        "name": "青林寺付近",
+        "kana": "せいりんじふきん",
+        "municipality": "川越市",
+        "address": "川越市鯨井",
+        "description": "湧出量が川越市内で最も多い。",
+        "access": "○",
+        "conservation_activity": "年2回水量・水質の調査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.330246,
+          36.192707
+        ]
+      },
+      "properties": {
+        "id": "spring_007",
+        "name": "湯殿神社御手洗池",
+        "kana": "ゆどのじんじゃみたらいいけ",
+        "municipality": "熊谷市",
+        "address": "熊谷市西別府1575",
+        "description": "近年湧出量が極端に少なくなっている。時期により渇水する。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.736725,
+          35.836903
+        ]
+      },
+      "properties": {
+        "id": "spring_008",
+        "name": "桜町湧水公園の湧水",
+        "kana": "さくらちょうわきみずこうえんのわきみず",
+        "municipality": "川口市",
+        "address": "川口市桜町1丁目地内",
+        "description": "隣接地に市指定の桜町保全緑地、法性寺保全緑地がある。起伏の地形から湧出している。",
+        "access": "○",
+        "conservation_activity": "湧水を利用し、水場の公園として保存。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.738144,
+          35.835918
+        ]
+      },
+      "properties": {
+        "id": "spring_009",
+        "name": "桜町湧水公園",
+        "kana": "さくらちょうわきみずこうえん",
+        "municipality": "川口市",
+        "address": "川口市桜町１-２地内",
+        "description": "公園近隣の斜面林等から湧出しているが、水量は少なく季節によっては枯渇状況にある。",
+        "access": "○",
+        "conservation_activity": "公園として維持管理を行い、啓発事業等にも活用。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.07933,
+          35.994633
+        ]
+      },
+      "properties": {
+        "id": "spring_010",
+        "name": "龍神水",
+        "kana": "りゅうじんすい",
+        "municipality": "秩父市",
+        "address": "秩父市中町",
+        "description": "武甲山の伏流水が湧き出ている秩父最古の清水。今宮神社の境内にあり、毎年4月4日の水分神事（みくまりしんじ）ではこのお水を秩父神社に授与している。",
+        "access": "◎",
+        "conservation_activity": "水を分けることは可能。 詳細は「今宮神社」まで問い合わせください。 【HP】秩父今宮神社",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.057861,
+          35.95734
+        ]
+      },
+      "properties": {
+        "id": "spring_011",
+        "name": "不動名水",
+        "kana": "ふどうめいすい",
+        "municipality": "秩父市",
+        "address": "秩父市荒川山口",
+        "description": "武甲山の地下水がここに湧き出していると言われており、いかなる日照りでも涸れることがない。不動様が祀られてある。",
+        "access": "◎",
+        "conservation_activity": "近くに住宅があり、汲むときにはマナーを守ってほしいとの声あり。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.121002,
+          36.010696
+        ]
+      },
+      "properties": {
+        "id": "spring_012",
+        "name": "龍神社の水",
+        "kana": "りゅうじんじゃのみず",
+        "municipality": "秩父市",
+        "address": "秩父市山田",
+        "description": "高篠山山頂付近に湧出しており、龍神社の御神水として地域住民の信仰の対象となっている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071671,
+          35.908367
+        ]
+      },
+      "properties": {
+        "id": "spring_013",
+        "name": "大日堂の水",
+        "kana": "だいにちどうのみず",
+        "municipality": "秩父市",
+        "address": "秩父市浦山",
+        "description": "浦山の沢の奥より湧水を導入し、寺で清浄水として使用されている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071671,
+          35.908367
+        ]
+      },
+      "properties": {
+        "id": "spring_014",
+        "name": "冠岩の清水",
+        "kana": "かんむりいわのしみず",
+        "municipality": "秩父市",
+        "address": "秩父市浦山",
+        "description": "浦山の冠岩集落の一角に湧出する清水で、登山者の水場として利用されている。",
+        "access": "×",
+        "conservation_activity": "現在は枯渇している。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.067535,
+          35.966599
+        ]
+      },
+      "properties": {
+        "id": "spring_015",
+        "name": "延命水",
+        "kana": "えんめいすい",
+        "municipality": "秩父市",
+        "address": "秩父市上影森411",
+        "description": "札所27番大渕寺の護国観音に通じる寺の裏山より湧出しており、導水し寺の水屋で使用されている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.076157,
+          35.97324
+        ]
+      },
+      "properties": {
+        "id": "spring_016",
+        "name": "知知夫滝坂水神社の清水",
+        "kana": "ちちぶたきさかみずじんじゃのしみず",
+        "municipality": "秩父市",
+        "address": "秩父市下影森",
+        "description": "金仙寺の森の北側斜面より湧出する清水で、滝坂水神社が祀られてある。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.085281,
+          35.983513
+        ]
+      },
+      "properties": {
+        "id": "spring_017",
+        "name": "札所12番野坂寺の水",
+        "kana": "ふだしょじゅうにばんのさかでらのみず",
+        "municipality": "秩父市",
+        "address": "秩父市野坂町2-12-25",
+        "description": "野坂寺の東側丘陵より湧出しており、寺の水屋で使用されている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090149,
+          36.000946
+        ]
+      },
+      "properties": {
+        "id": "spring_018",
+        "name": "妙見七つ井戸",
+        "kana": "みょうけんななついど",
+        "municipality": "秩父市",
+        "address": "秩父市上宮地町",
+        "description": "宮地地区にある湧水で、洗い物等に利用されている。",
+        "access": "○",
+        "conservation_activity": "一部の井戸は見学不可。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090149,
+          36.000946
+        ]
+      },
+      "properties": {
+        "id": "spring_019",
+        "name": "虚空蔵寺の水",
+        "kana": "こくぞうじのみず",
+        "municipality": "秩父市",
+        "address": "秩父市上宮地町",
+        "description": "虚空蔵寺の境内東側の丘陵より湧出している清水。寺の境内に導水して利用されている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.829224,
+          35.910919
+        ]
+      },
+      "properties": {
+        "id": "spring_020",
+        "name": "荒川源流",
+        "kana": "あらかわげんりゅう",
+        "municipality": "秩父市",
+        "address": "秩父市大滝3638－8番地付近",
+        "description": "荒川の源流であり、甲武信ヶ岳に源を発する湧水。",
+        "access": "◎",
+        "conservation_activity": "管理小屋（甲武信小屋）に保全を委託。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.784714,
+          35.990322
+        ]
+      },
+      "properties": {
+        "id": "spring_021",
+        "name": "中津川龍神水",
+        "kana": "なかつがわりゅうじんすい",
+        "municipality": "秩父市",
+        "address": "秩父市中津川字西ノ向436番地",
+        "description": "関東地方でも有数の紅葉の名所として知られる中津峡を流れる中津川上流部にあり、地域の生活に利用されている。",
+        "access": "×",
+        "conservation_activity": "埼玉県（森林科学館）が経路点検、湧水周辺清掃活動を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.528885,
+          35.800709
+        ]
+      },
+      "properties": {
+        "id": "spring_022",
+        "name": "滝の城址公園",
+        "kana": "たきのじょうしこうえん",
+        "municipality": "所沢市",
+        "address": "所沢市城570",
+        "description": "公園内の急斜面のスギの木の根元付近から湧出している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.528885,
+          35.800709
+        ]
+      },
+      "properties": {
+        "id": "spring_023",
+        "name": "滝の城址公園",
+        "kana": "たきのじょうしこうえん",
+        "municipality": "所沢市",
+        "address": "所沢市城564",
+        "description": "公園内の急斜面の岩組から湧出しており、渓谷、池を経て柳瀬川へ流入する。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.149704,
+          35.868259
+        ]
+      },
+      "properties": {
+        "id": "spring_024",
+        "name": "有間の湧水",
+        "kana": "ありまのゆうすい",
+        "municipality": "飯能市",
+        "address": "飯能市下名栗地内 （名栗湖周囲）",
+        "description": "名栗湖の南側に位置する湧水。近場に駐車場無。",
+        "access": "☆",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1465,
+          35.910126
+        ]
+      },
+      "properties": {
+        "id": "spring_025",
+        "name": "不動の名水",
+        "kana": "ふどうのめいすい",
+        "municipality": "飯能市",
+        "address": "飯能市大字上名栗地内",
+        "description": "新井不動尊の脇にあり、水汲み場が整備されている。",
+        "access": "☆",
+        "conservation_activity": "土地の所有者により管理。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.149704,
+          35.868259
+        ]
+      },
+      "properties": {
+        "id": "spring_026",
+        "name": "竜神の湧水",
+        "kana": "りゅうじんのゆうすい",
+        "municipality": "飯能市",
+        "address": "飯能市下名栗地内 （名栗湖周囲）",
+        "description": "名栗湖の北側に位置するレイクサイドテラス名栗湖から100mほど西側に位置する湧水。近場に駐車場無。",
+        "access": "☆",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.149704,
+          35.868259
+        ]
+      },
+      "properties": {
+        "id": "spring_027",
+        "name": "金毘羅源湧水",
+        "kana": "こんぴらげんゆうすい",
+        "municipality": "飯能市",
+        "address": "飯能市下名栗地内 （名栗湖周囲）",
+        "description": "名栗湖の北側に位置するレイクサイドテラス名栗湖の前に位置する湧水。近場に駐車場無。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.230759,
+          35.904751
+        ]
+      },
+      "properties": {
+        "id": "spring_028",
+        "name": "吾野湧水",
+        "kana": "あがのゆうすい",
+        "municipality": "飯能市",
+        "address": "飯能市坂石町分333",
+        "description": "吾野駅からすぐ近くに位置する。",
+        "access": "☆",
+        "conservation_activity": "地元の寺院・企業が管理。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.668457,
+          36.140186
+        ]
+      },
+      "properties": {
+        "id": "spring_029",
+        "name": "お花が池",
+        "kana": "おはながいけ",
+        "municipality": "加須市",
+        "address": "加須市北下新井地内",
+        "description": "主に雨水・地下水などにより保水されており、池の水深も深く地下水脈に通じているとされている。",
+        "access": "○",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.141129,
+          36.191006
+        ]
+      },
+      "properties": {
+        "id": "spring_030",
+        "name": "本庄市清水の池公園",
+        "kana": "ほんじょうししみずのいけこうえん",
+        "municipality": "本庄市",
+        "address": "本庄市児玉町児玉2351番地6外",
+        "description": "湧水は園内の流れとなっている。冬場は枯渇している。",
+        "access": "☆",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.144989,
+          36.190762
+        ]
+      },
+      "properties": {
+        "id": "spring_031",
+        "name": "本庄市思池親水公園",
+        "kana": "ほんじょうしおもいいけしんすいこうえん",
+        "municipality": "本庄市",
+        "address": "本庄市児玉町児玉1772番外",
+        "description": "湧水を池にしている。水位は季節により変化する。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.137665,
+          36.195297
+        ]
+      },
+      "properties": {
+        "id": "spring_032",
+        "name": "吉田林児童公園",
+        "kana": "きたばやしじどうこうえん",
+        "municipality": "本庄市",
+        "address": "本庄市児玉町吉田林74番1外",
+        "description": "湧水を池にしており、池の水位保持のためポンプも利用している。枯渇する時期もある。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.17308,
+          36.245747
+        ]
+      },
+      "properties": {
+        "id": "spring_033",
+        "name": "元小山川上流域",
+        "kana": "もとこやまがわじょうりゅういき",
+        "municipality": "本庄市",
+        "address": "本庄市小島地内",
+        "description": "河川と陸地の境目付近から湧出している。",
+        "access": "－",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.374603,
+          35.855343
+        ]
+      },
+      "properties": {
+        "id": "spring_034",
+        "name": "滝不動尊",
+        "kana": "たきふどうそん",
+        "municipality": "狭山市",
+        "address": "狭山市笹井2-38付近",
+        "description": "不動明王を祭った堂の裏から湧出し、小さな滝となって流れている。",
+        "access": "◎",
+        "conservation_activity": "不明",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.282303,
+          36.190262
+        ]
+      },
+      "properties": {
+        "id": "spring_035",
+        "name": "下台池公園",
+        "kana": "しもだいいけこうえん",
+        "municipality": "深谷市",
+        "address": "深谷市西島5丁目",
+        "description": "市民公園内の池に流入しており、立ち入りは自由。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.282303,
+          36.190262
+        ]
+      },
+      "properties": {
+        "id": "spring_036",
+        "name": "瀧宮神社",
+        "kana": "たきのみやじんじゃ",
+        "municipality": "深谷市",
+        "address": "深谷市西島5丁目",
+        "description": "神社の境内の池に流入している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.236115,
+          36.213848
+        ]
+      },
+      "properties": {
+        "id": "spring_037",
+        "name": "島護産泰神社",
+        "kana": "しまごさんたいじんじゃ",
+        "municipality": "深谷市",
+        "address": "深谷市岡",
+        "description": "神社の境内杉林の中から水路に流入している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.246048,
+          36.206089
+        ]
+      },
+      "properties": {
+        "id": "spring_038",
+        "name": "厳島神社",
+        "kana": "いつくしまじんじゃ",
+        "municipality": "深谷市",
+        "address": "深谷市普済寺",
+        "description": "神社敷地内にある。湧水周辺はロープで囲われ立ち入り禁止となっている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.213379,
+          36.172207
+        ]
+      },
+      "properties": {
+        "id": "spring_039",
+        "name": "弘法の井戸",
+        "kana": "こうぼうのいど",
+        "municipality": "深谷市",
+        "address": "深谷市本郷",
+        "description": "「弘法の井戸保存会」によって整備された。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.215179,
+          36.195503
+        ]
+      },
+      "properties": {
+        "id": "spring_040",
+        "name": "弁天池",
+        "kana": "べんてんいけ",
+        "municipality": "深谷市",
+        "address": "深谷市山崎",
+        "description": "用水組合により整備された。近くにゴルフ場があり、散策コースとしても適している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.254852,
+          36.137669
+        ]
+      },
+      "properties": {
+        "id": "spring_041",
+        "name": "八幡神社宮下の池",
+        "kana": "はちまんじんじゃみやしたのいけ",
+        "municipality": "深谷市",
+        "address": "深谷市永田",
+        "description": "八幡神社東側の林の中に湧き出している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.254852,
+          36.137669
+        ]
+      },
+      "properties": {
+        "id": "spring_042",
+        "name": "清水池",
+        "kana": "しみずいけ",
+        "municipality": "深谷市",
+        "address": "深谷市永田",
+        "description": "周囲はけやきの大木が目立つ。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.254852,
+          36.137669
+        ]
+      },
+      "properties": {
+        "id": "spring_043",
+        "name": "柳出井池",
+        "kana": "やなぎでいけ",
+        "municipality": "深谷市",
+        "address": "深谷市永田",
+        "description": "地元住民によって整備されており、池の由来に関する説明が記載されている。",
+        "access": "◎",
+        "conservation_activity": "地元住民が整備。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.254852,
+          36.137669
+        ]
+      },
+      "properties": {
+        "id": "spring_044",
+        "name": "不動の滝",
+        "kana": "ふどうのたき",
+        "municipality": "深谷市",
+        "address": "深谷市永田",
+        "description": "由来についての説明看板がある。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.252655,
+          36.128422
+        ]
+      },
+      "properties": {
+        "id": "spring_045",
+        "name": "黒田宮ノ台地内の池",
+        "kana": "くろだみやのだいちないのいけ",
+        "municipality": "深谷市",
+        "address": "深谷市黒田",
+        "description": "坂地にあり、湧水が染み出している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.252655,
+          36.128422
+        ]
+      },
+      "properties": {
+        "id": "spring_046",
+        "name": "豊栄神社",
+        "kana": "とよさかじんじゃ",
+        "municipality": "深谷市",
+        "address": "深谷市黒田",
+        "description": "昔は付近に池があったが、現在は取り壊されている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.277191,
+          36.141003
+        ]
+      },
+      "properties": {
+        "id": "spring_047",
+        "name": "清水湧水",
+        "kana": "しみずゆうすい",
+        "municipality": "深谷市",
+        "address": "深谷市田中",
+        "description": "鯉の養殖用に使われていた。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.277191,
+          36.141003
+        ]
+      },
+      "properties": {
+        "id": "spring_048",
+        "name": "見目湧水",
+        "kana": "みるめゆうすい",
+        "municipality": "深谷市",
+        "address": "深谷市田中",
+        "description": "昔は水道取水施設として利用されていた。",
+        "access": "○",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.376556,
+          35.794926
+        ]
+      },
+      "properties": {
+        "id": "spring_049",
+        "name": "大森調節池の湧水",
+        "kana": "おおもりちょうせついけのゆうすい",
+        "municipality": "入間市",
+        "address": "入間市宮寺",
+        "description": "不老川の洪水調整のために設置された調整池から湧き出している。",
+        "access": "×",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.376556,
+          35.794926
+        ]
+      },
+      "properties": {
+        "id": "spring_050",
+        "name": "不老川流域の湧水群",
+        "kana": "ふろうがわりゅういきのゆうすいぐん",
+        "municipality": "入間市",
+        "address": "入間市宮寺・二本木、上藤沢、下藤沢",
+        "description": "不老川沿いにみられる伏流水起源の湧水群。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.376556,
+          35.794926
+        ]
+      },
+      "properties": {
+        "id": "spring_051",
+        "name": "狭山丘陵北側斜面の湧水群",
+        "kana": "さやまきゅうりょうきたがわしゃめんのゆうすいぐん",
+        "municipality": "入間市",
+        "address": "入間市宮寺他",
+        "description": "大谷戸湿地、西久保湿地など狭山丘陵の斜面等から湧き出す湧水群。",
+        "access": "◎",
+        "conservation_activity": "埼玉県が、「緑の森博物館」として保全活動を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.354538,
+          35.844261
+        ]
+      },
+      "properties": {
+        "id": "spring_052",
+        "name": "谷田の泉",
+        "kana": "やたのいずみ",
+        "municipality": "入間市",
+        "address": "入間市野田",
+        "description": "入間川の河岸段丘からの湧水。湧出量は豊富で、かつてはため池にして農業用水に利用されていた。",
+        "access": "◎",
+        "conservation_activity": "公有地化して保全活動を実施。 市民団体が維持・保全活動を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.354538,
+          35.844261
+        ]
+      },
+      "properties": {
+        "id": "spring_053",
+        "name": "野田河川公園の湧水",
+        "kana": "のだかせんこうえんのゆうすい",
+        "municipality": "入間市",
+        "address": "入間市野田",
+        "description": "入間川の河岸段丘からの湧水。",
+        "access": "◎",
+        "conservation_activity": "『ふれあい茶ん歩道③ 湧水をめぐる』と題して、PRを実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.354538,
+          35.844261
+        ]
+      },
+      "properties": {
+        "id": "spring_054",
+        "name": "滝不動の湧水",
+        "kana": "たきふどうのゆうすい",
+        "municipality": "入間市",
+        "address": "入間市野田",
+        "description": "入間川の河岸段丘からの湧水。",
+        "access": "◎",
+        "conservation_activity": "『ふれあい茶ん歩道③ 湧水をめぐる』と題して、PRを実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.354538,
+          35.844261
+        ]
+      },
+      "properties": {
+        "id": "spring_055",
+        "name": "円照寺の弁天池",
+        "kana": "えんしょうじのべんてんいけ",
+        "municipality": "入間市",
+        "address": "入間市野田",
+        "description": "入間川の河岸段丘からの湧水。",
+        "access": "○",
+        "conservation_activity": "『ふれあい茶ん歩道③ 湧水をめぐる』と題して、PRを実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.354492,
+          35.836021
+        ]
+      },
+      "properties": {
+        "id": "spring_056",
+        "name": "清水橋の湧水",
+        "kana": "しみずはしのゆうすい",
+        "municipality": "入間市",
+        "address": "入間市仏子",
+        "description": "入間川の河岸段丘からの湧水。",
+        "access": "◎",
+        "conservation_activity": "『ふれあい茶ん歩道③ 湧水をめぐる』と題して、PRを実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.37265,
+          35.839588
+        ]
+      },
+      "properties": {
+        "id": "spring_057",
+        "name": "ホタルの里",
+        "kana": "ほたるのさと",
+        "municipality": "入間市",
+        "address": "入間市牛沢町",
+        "description": "入間川の河岸段丘からの湧水。",
+        "access": "◎",
+        "conservation_activity": "ホタルの生息地として保全活動を実施。 市民団体が湧水を活用した池を造成。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.348801,
+          35.81461
+        ]
+      },
+      "properties": {
+        "id": "spring_058",
+        "name": "醤油屋の池",
+        "kana": "しょうゆやのいけ",
+        "municipality": "入間市",
+        "address": "入間市下谷ヶ貫",
+        "description": "加治丘陵からの湧水によって作られた池。",
+        "access": "◎",
+        "conservation_activity": "農村環境改善センターと一体的に保全。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.581955,
+          35.790672
+        ]
+      },
+      "properties": {
+        "id": "spring_059",
+        "name": "子の神氷川神社",
+        "kana": "ねのかみひかわじんじゃ",
+        "municipality": "朝霞市",
+        "address": "朝霞市膝折町2丁目",
+        "description": "神社の境内にあり、舗装されている。",
+        "access": "○",
+        "conservation_activity": "不明",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.60257,
+          35.810158
+        ]
+      },
+      "properties": {
+        "id": "spring_060",
+        "name": "岡緑地 （旧名称：向山児童遊園地付近）",
+        "kana": "おかりょくち",
+        "municipality": "朝霞市",
+        "address": "朝霞市岡3丁目",
+        "description": "斜面林より湧出している。",
+        "access": "○",
+        "conservation_activity": "市が緑地の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.609711,
+          35.79686
+        ]
+      },
+      "properties": {
+        "id": "spring_061",
+        "name": "水久保公園",
+        "kana": "みずくぼこうえん",
+        "municipality": "朝霞市",
+        "address": "朝霞市根岸台7丁目",
+        "description": "地域の親水公園となっている。",
+        "access": "◎",
+        "conservation_activity": "市が公園の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.599747,
+          35.79158
+        ]
+      },
+      "properties": {
+        "id": "spring_062",
+        "name": "広沢の池",
+        "kana": "ひろさわのいけ",
+        "municipality": "朝霞市",
+        "address": "朝霞市栄町1丁目",
+        "description": "市指定史跡。古来より灌漑用水などに利用されていた。",
+        "access": "◎",
+        "conservation_activity": "市が維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.607712,
+          35.815609
+        ]
+      },
+      "properties": {
+        "id": "spring_063",
+        "name": "わくわく田島緑地",
+        "kana": "わくわくたじまりょくち",
+        "municipality": "朝霞市",
+        "address": "朝霞市田島2丁目",
+        "description": "黒目川と新河岸川の合流地にある緑地から湧出している。",
+        "access": "◎",
+        "conservation_activity": "環境市民団体と市が維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.60257,
+          35.810158
+        ]
+      },
+      "properties": {
+        "id": "spring_064",
+        "name": "湧水代官水",
+        "kana": "ゆうすいだいかんみず",
+        "municipality": "朝霞市",
+        "address": "朝霞市岡3丁目",
+        "description": "市指定天然記念物。灌漑用水などとして地域の人々に「代官水」と呼ばれていた貴重な湧水。周辺では貴重な動植物が確認されている。",
+        "access": "◎",
+        "conservation_activity": "市が維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.596481,
+          35.810383
+        ]
+      },
+      "properties": {
+        "id": "spring_065",
+        "name": "東円寺",
+        "kana": "とうえんじ",
+        "municipality": "朝霞市",
+        "address": "朝霞市岡2丁目",
+        "description": "湧水が敷地内の「不動の滝」として流れ出ている。",
+        "access": "○",
+        "conservation_activity": "不明",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.611984,
+          35.801476
+        ]
+      },
+      "properties": {
+        "id": "spring_066",
+        "name": "郷戸緑地",
+        "kana": "ごうどりょくち",
+        "municipality": "朝霞市",
+        "address": "朝霞市根岸台8丁目",
+        "description": "斜面林より湧出している。",
+        "access": "○",
+        "conservation_activity": "市が緑地の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.582153,
+          35.83379
+        ]
+      },
+      "properties": {
+        "id": "spring_067",
+        "name": "愛の泉",
+        "kana": "あいのいずみ",
+        "municipality": "志木市",
+        "address": "志木市本町2丁目10番先",
+        "description": "公園内の斜面林より湧出している。",
+        "access": "◎",
+        "conservation_activity": "市が公園の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.56308,
+          35.828495
+        ]
+      },
+      "properties": {
+        "id": "spring_068",
+        "name": "背戸",
+        "kana": "せど",
+        "municipality": "志木市",
+        "address": "志木市館1丁目1番先",
+        "description": "周辺の斜面林から湧出している。",
+        "access": "◎",
+        "conservation_activity": "市が公園の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.621979,
+          35.778351
+        ]
+      },
+      "properties": {
+        "id": "spring_069",
+        "name": "白子宿特別緑地保全地区 (富澤湧水)",
+        "kana": "しらこじゅくとくべつりょくちほぜんちく (とみざわゆうすい)",
+        "municipality": "和光市",
+        "address": "和光市白子2丁目",
+        "description": "歴史ある白子宿を中心に、古くから生活とのかかわりを持ってきた富澤湧水と、湧水の仕組みが分かる地層が見られる。",
+        "access": "◎",
+        "conservation_activity": "環境市民団体と市が保全活動を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.62912,
+          35.787582
+        ]
+      },
+      "properties": {
+        "id": "spring_070",
+        "name": "市場峡公園",
+        "kana": "いちばはけこうえん",
+        "municipality": "和光市",
+        "address": "和光市白子3丁目",
+        "description": "湧水を利用した水場がある小公園。",
+        "access": "◎",
+        "conservation_activity": "市が公園の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.611069,
+          35.792889
+        ]
+      },
+      "properties": {
+        "id": "spring_071",
+        "name": "柿ノ木坂湧水公園",
+        "kana": "かきのきざかわきみずこうえん",
+        "municipality": "和光市",
+        "address": "和光市新倉1丁目",
+        "description": "公園下部に湧水があり、それを利用した池と流れのある公園。",
+        "access": "◎",
+        "conservation_activity": "市が公園の維持管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.575653,
+          35.775467
+        ]
+      },
+      "properties": {
+        "id": "spring_072",
+        "name": "妙音沢大沢",
+        "kana": "みょうおんざわおおさわ",
+        "municipality": "新座市",
+        "address": "新座市栄1丁目",
+        "description": "都市緑地法に基づき指定されている、妙音沢特別保全地区から湧出している2つの沢のうちのひとつ",
+        "access": "◎",
+        "conservation_activity": "市民が、妙音沢特別緑地保全地区内のゴミや不法投棄物の清掃等を行う「妙音沢緑地クリーンアップ作戦」を年1回程度実施。 年1回水量・水質の調査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.575653,
+          35.775467
+        ]
+      },
+      "properties": {
+        "id": "spring_073",
+        "name": "妙音沢小沢",
+        "kana": "みょうおんざわこさわ",
+        "municipality": "新座市",
+        "address": "新座市栄1丁目",
+        "description": "都市緑地法に基づき指定されている、妙音沢特別保全地区から湧出している2つの沢のうちのひとつ",
+        "access": "◎",
+        "conservation_activity": "市民が、妙音沢特別緑地保全地区内のゴミや不法投棄物の清掃等を行う「妙音沢緑地クリーンアップ作戦」を年1回程度実施。 年1回の水量・水質調査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.560623,
+          35.763817
+        ]
+      },
+      "properties": {
+        "id": "spring_074",
+        "name": "野寺親水公園",
+        "kana": "のでらしんすいこうえん",
+        "municipality": "新座市",
+        "address": "新座市野寺3丁目",
+        "description": "野寺親水公園の段丘崖下からの湧水。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.560623,
+          35.763817
+        ]
+      },
+      "properties": {
+        "id": "spring_075",
+        "name": "弁財天",
+        "kana": "べんざいてん",
+        "municipality": "新座市",
+        "address": "新座市野寺3丁目",
+        "description": "野寺親水公園の段丘崖下からの湧水。",
+        "access": "◎",
+        "conservation_activity": "年1の回水質調査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.566864,
+          36.015198
+        ]
+      },
+      "properties": {
+        "id": "spring_076",
+        "name": "谷津谷の泉",
+        "kana": "やつやのいずみ",
+        "municipality": "桶川市",
+        "address": "桶川市坂田西3丁目4番",
+        "description": "平成29年に「坂田谷津谷遺跡公園」として整備された。湧水は一般の方も見学可能である。湧水の歴史を伝える案内板が設置されている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.538666,
+          35.998608
+        ]
+      },
+      "properties": {
+        "id": "spring_077",
+        "name": "",
+        "kana": "",
+        "municipality": "桶川市",
+        "address": "桶川市大字上日出谷8-2辺り",
+        "description": "埼玉県荒川左岸北部流域下水道桶川中継ポンプ場の北側にある水路からの湧水。",
+        "access": "－",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.505936,
+          36.014641
+        ]
+      },
+      "properties": {
+        "id": "spring_078",
+        "name": "横田薬師堂下湧水",
+        "kana": "よこたやくしどうしたゆうすい",
+        "municipality": "北本市",
+        "address": "北本市石戸宿8丁目地先",
+        "description": "荒川崖線の裾部に湧出点が数ヵ所認められ、市内の湧水では最も湧出量が多い。",
+        "access": "◎",
+        "conservation_activity": "北本市が湧水地周辺を整備。 木道によって見学がしやすい。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.511032,
+          36.022091
+        ]
+      },
+      "properties": {
+        "id": "spring_079",
+        "name": "高尾宮岡の景観地",
+        "kana": "たかおみやおかのけいかんち",
+        "municipality": "北本市",
+        "address": "北本市高尾8丁目",
+        "description": "林縁を流れる湧水。",
+        "access": "◎",
+        "conservation_activity": "湧水地周辺を整備。 木道によって見学がしやすい。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.545227,
+          35.842113
+        ]
+      },
+      "properties": {
+        "id": "spring_080",
+        "name": "江川親水公園",
+        "kana": "えがわしんすいこうえん",
+        "municipality": "富士見市",
+        "address": "富士見市関沢1丁目6-17",
+        "description": "線路の下を通りぬけてきた湧水が江川に注ぎ込んでいる。",
+        "access": "☆",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.564346,
+          35.840801
+        ]
+      },
+      "properties": {
+        "id": "spring_081",
+        "name": "石井緑地公園",
+        "kana": "いしいりょくちこうえん",
+        "municipality": "富士見市",
+        "address": "富士見市大字水子4300",
+        "description": "この地域に湧き出していた多くの湧水のひとつが公園の東側に残っている。",
+        "access": "☆",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.553513,
+          35.834961
+        ]
+      },
+      "properties": {
+        "id": "spring_082",
+        "name": "栗谷津公園",
+        "kana": "くりやつこうえん",
+        "municipality": "富士見市",
+        "address": "富士見市針ヶ谷1-4",
+        "description": "公園内の倶利加羅不動の奥から市内で最も多くの湧水が確認されている。",
+        "access": "☆",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.352615,
+          35.93108
+        ]
+      },
+      "properties": {
+        "id": "spring_083",
+        "name": "滝不動",
+        "kana": "たきふどう",
+        "municipality": "坂戸市",
+        "address": "坂戸市四日市場",
+        "description": "小さな泉が滝になって流れているが、飲料水として飲むことはできない。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.318787,
+          35.881035
+        ]
+      },
+      "properties": {
+        "id": "spring_084",
+        "name": "天王池",
+        "kana": "てんのういけ",
+        "municipality": "日高市",
+        "address": "日高市大字梅原288",
+        "description": "かつては農業用のため池であったが、現在ではほとんど使用されていない。",
+        "access": "×",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.34256,
+          35.920597
+        ]
+      },
+      "properties": {
+        "id": "spring_085",
+        "name": "清水の上親水公園",
+        "kana": "しみずのうえしんすいこうえん",
+        "municipality": "日高市",
+        "address": "日高市大字田波目798-2",
+        "description": "地域の親水公園となっている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.537888,
+          35.872028
+        ]
+      },
+      "properties": {
+        "id": "spring_086",
+        "name": "福岡江川湧水群",
+        "kana": "ふくおかえがわゆうすいぐん",
+        "municipality": "ふじみ野市",
+        "address": "ふじみ野市水宮",
+        "description": "福岡江川（公共下水道雨水幹線）の川底から数十ヵ所湧出している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.521637,
+          35.857819
+        ]
+      },
+      "properties": {
+        "id": "spring_087",
+        "name": "砂川掘湧水",
+        "kana": "すながわぼりゆうすい",
+        "municipality": "ふじみ野市",
+        "address": "ふじみ野市苗間",
+        "description": "砂川堀大井地内弁天橋～栄橋の間に数十ヵ所、川底から湧出している。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.396774,
+          36.006916
+        ]
+      },
+      "properties": {
+        "id": "spring_088",
+        "name": "高坂七清水",
+        "kana": "たかさかななしみず",
+        "municipality": "東松山市",
+        "address": "東松山市高坂",
+        "description": "高坂地区に存在する7ヵ所の湧水を総称して、「高坂七清水」と呼んでいる。",
+        "access": "◎",
+        "conservation_activity": "不明",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.548203,
+          35.821095
+        ]
+      },
+      "properties": {
+        "id": "spring_089",
+        "name": "こぶしの里",
+        "kana": "こぶしのさと",
+        "municipality": "三芳町",
+        "address": "三芳町竹間沢1081-1",
+        "description": "湧水周辺は遊歩道等が整備されており、住民の憩いの場となっている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.649017,
+          35.857033
+        ]
+      },
+      "properties": {
+        "id": "spring_090",
+        "name": "伝木曽義仲産湯の清水",
+        "kana": "でんきそよしなかうぶゆのしみず",
+        "municipality": "比企郡嵐山町",
+        "address": "埼玉県比企郡嵐山町 大字鎌形1993-1",
+        "description": "平安時代末期の武将、木曽義仲（別名：源義仲）が産まれた時に産湯として使用されたという伝承が残る湧水。",
+        "access": "☆",
+        "conservation_activity": "鎌形八幡神社総代会が保全・清掃活動を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.649017,
+          35.857033
+        ]
+      },
+      "properties": {
+        "id": "spring_091",
+        "name": "お池の水",
+        "kana": "おいけのみず",
+        "municipality": "比企郡鳩山町",
+        "address": "埼玉県比企郡鳩山町 大字竹本237番地1",
+        "description": "地域住民に親しまれ、町内外問わず、生活用水として利用されてきた。",
+        "access": "◎",
+        "conservation_activity": "近隣住民が採水口及び採水箇所付近の清掃を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.154968,
+          35.966351
+        ]
+      },
+      "properties": {
+        "id": "spring_092",
+        "name": "北の入湧水",
+        "kana": "きたのいりゆうすい",
+        "municipality": "横瀬町",
+        "address": "横瀬町大字芦ヶ久保地内",
+        "description": "丸山の中腹から豊富に湧出している。",
+        "access": "×",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.108948,
+          35.973915
+        ]
+      },
+      "properties": {
+        "id": "spring_093",
+        "name": "城谷沢の井",
+        "kana": "しらやさわのい",
+        "municipality": "横瀬町",
+        "address": "秩父郡横瀬町大字横瀬649番地",
+        "description": "地元の産業として絹布の生産を奨励し、その染色に用いた湧水。この付近から産出した絹は後に、秩父銘仙へと発展していった。埼玉県指定旧跡。現在でも水が湧き出している。",
+        "access": "◎",
+        "conservation_activity": "湧水源周辺の草刈り等を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.100052,
+          35.987305
+        ]
+      },
+      "properties": {
+        "id": "spring_094",
+        "name": "お天狗様の湧水",
+        "kana": "おてんぐさまのゆうすい",
+        "municipality": "横瀬町",
+        "address": "秩父郡横瀬町根古屋地内",
+        "description": "猿田彦神社と八坂神社が並ぶ境内にあり、裏山からの湧水をパイプで導水している。",
+        "access": "◎",
+        "conservation_activity": "湧水源周辺の草刈り等を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.100052,
+          35.987305
+        ]
+      },
+      "properties": {
+        "id": "spring_095",
+        "name": "生川延命水",
+        "kana": "うぶがわえんめいすい",
+        "municipality": "横瀬町",
+        "address": "秩父郡横瀬町生川地内",
+        "description": "武甲山麓の杉山山腹から湧出している。湧出量は豊富で、山道脇まで導水されている。付近には水神様が祀られている。",
+        "access": "◎",
+        "conservation_activity": "湧水源周辺の草刈り等を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.909424,
+          36.067249
+        ]
+      },
+      "properties": {
+        "id": "spring_096",
+        "name": "毘沙門水",
+        "kana": "びしゃもんすい",
+        "municipality": "小鹿野町",
+        "address": "秩父郡小鹿野町藤倉馬上地区",
+        "description": "白石山(別名：毘沙門山)の麓から湧出しており、日量1,000トンの豊富な湧水。馬上地区の生活用水として利用されている。水汲み場も設置されており水の持ち帰りもできるが、その際には環境整備協力金をお願いしている。また、小鹿野町振興公社よりペットボトル飲料水として販売もされている。",
+        "access": "◎",
+        "conservation_activity": "地元住民が水源周辺や水汲み場などの巡視や清掃活動を実施。 小鹿野町振興公社が年1回の水質検査を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.190857,
+          36.040379
+        ]
+      },
+      "properties": {
+        "id": "spring_097",
+        "name": "観音水",
+        "kana": "かんのんすい",
+        "municipality": "東秩父村",
+        "address": "東秩父村御堂",
+        "description": "夏場でも周辺は涼しい。冬場は湧出量が減少する。",
+        "access": "◎",
+        "conservation_activity": "近隣住民が定期的な周辺の清掃等管理を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.149323,
+          36.101257
+        ]
+      },
+      "properties": {
+        "id": "spring_098",
+        "name": "日本水",
+        "kana": "やまとみず",
+        "municipality": "寄居町",
+        "address": "大里郡寄居町大字風布字釜伏地内",
+        "description": "釜伏山の中腹から湧出し、水量も豊富。 その昔、日本武尊が東征の折、剣を刺したところ「神水忽ち湧出した」との伝説がある。現在は泉への立ち入りは禁止されているが、取水所で水を汲むことができる。",
+        "access": "◎",
+        "conservation_activity": "地元町民が美観作りと保全を実施。",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.177734,
+          36.091412
+        ]
+      },
+      "properties": {
+        "id": "spring_099",
+        "name": "猪ノ倉仙元名水",
+        "kana": "いのくらせんげんめいすい",
+        "municipality": "寄居町",
+        "address": "大里郡寄居町大字三品地内",
+        "description": "仙元山の麓、三品川の上流にある猪ノ倉の地に湧き出る名水。近くには観光ぶどう園等もあり、年間を通じてハイキング客等が名水を求めて訪れている。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.05835,
+          36.08987
+        ]
+      },
+      "properties": {
+        "id": "spring_100",
+        "name": "水くぐりの長命水",
+        "kana": "みずくぐりのちょうめいすい",
+        "municipality": "皆野町",
+        "address": "秩父郡皆野町大字下日野沢3522",
+        "description": "秩父三十四観音札所34番水潜寺の観音堂の右奥に水くぐりの岩屋があり、そこから湧水を引いている。大量に汲むことは難しい。",
+        "access": "◎",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "正確",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地（住所）を国土地理院住所検索APIでジオコーディングした地点です。番地までの記載があるため比較的位置精度は高いですが、湧水そのものの正確な座標ではなく代表地点である点にご留意ください。"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.61673,
+          36.00531
+        ]
+      },
+      "properties": {
+        "id": "spring_101",
+        "name": "大針の湧水",
+        "kana": "おおばりのゆうすい",
+        "municipality": "伊奈町",
+        "address": "伊奈町大針",
+        "description": "かつては水田耕作が行われていたといわれている。",
+        "access": "○",
+        "conservation_activity": "",
+        "status": "湧出中",
+        "confirmed_year": null,
+        "accuracy": "おおよそ",
+        "source": "環境省 湧水保全ポータルサイト（埼玉県の代表的な湧水）",
+        "source_url": "https://www.env.go.jp/water/yusui/result/sub2/saitama.html",
+        "position_note": "環境省公表データの所在地は大字・地区名までの記載で番地の記載が無いため、国土地理院住所検索APIでその地区の代表地点を推定表示しています。実際の湧水位置とは離れている可能性があります。"
+      }
+    }
+  ]
+}

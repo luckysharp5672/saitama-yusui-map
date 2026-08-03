@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>埼玉県 湧水ポテンシャルマップ</title>
+
+  <!-- MapLibre GL JS（CDN配信、ビルド不要） -->
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ==================== ヘッダー ==================== -->
+  <header id="app-header">
+    <h1>埼玉県 湧水ポテンシャルマップ</h1>
+    <p class="header-sub">既知湧水地点・1997年湿地台帳（実データ） × 湧水ポテンシャルスコア × 週別降水量（ポテンシャル・降水量はダミーデータ）</p>
+    <button id="toggle-layer-panel" class="icon-button" title="レイヤーパネルの表示切替">☰ レイヤー</button>
+  </header>
+
+  <!-- ==================== メイン3カラムレイアウト ==================== -->
+  <div id="app-body">
+
+    <!-- ---------- 左: レイヤーコントロールパネル ---------- -->
+    <aside id="layer-panel" class="panel">
+      <h2>レイヤー</h2>
+
+      <!-- 1. 既知湧水地点 -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-springs" checked />
+            既知湧水地点
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-springs" min="0" max="1" step="0.05" value="1" />
+          </label>
+          <p class="panel-note panel-note-inline">
+            出典: <a href="https://www.env.go.jp/water/yusui/result/sub2/saitama.html" target="_blank" rel="noopener">環境省 湧水保全ポータルサイト（埼玉県）</a>。
+            座標は所在地（住所）から推定した位置です。
+            <span class="accuracy-dot accuracy-dot-approx"></span>オレンジ枠＝番地の記載が無く地区の代表地点で推定した「おおよそ」の位置（クリックで詳細）。
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. 湧水ポテンシャルスコア -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-potential" checked />
+            湧水ポテンシャルスコア
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-potential" min="0" max="1" step="0.05" value="0.75" />
+          </label>
+          <label class="slider-label">
+            表示閾値（スコア <span id="threshold-value">0.00</span> 以上）
+            <input type="range" id="threshold-potential" min="0" max="1" step="0.01" value="0" />
+          </label>
+          <div class="legend legend-sequential" id="legend-potential">
+            <span>0</span><span class="legend-bar legend-bar-blue"></span><span>1</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 週別降水量 -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-rainfall" />
+            週別降水量
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-rainfall" min="0" max="1" step="0.05" value="0.7" />
+          </label>
+          <div class="week-controls">
+            <button id="week-play" class="icon-button" title="週送りアニメーション再生/停止">▶ 再生</button>
+            <input type="range" id="week-slider" min="0" max="51" step="1" value="0" />
+            <span id="week-label">----/--/--</span>
+          </div>
+          <div class="legend legend-sequential" id="legend-rainfall">
+            <span>少</span><span class="legend-bar legend-bar-orange"></span><span>多</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 1997年 埼玉県湿地湧水地台帳（歴史データ） -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-wetland1997" />
+            1997年 湿地湧水地台帳
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-wetland1997" min="0" max="1" step="0.05" value="0.85" />
+          </label>
+          <label>
+            <input type="checkbox" id="toggle-wetland1997-onlysprings" />
+            「湧水・井戸」カテゴリのみ表示
+          </label>
+          <div class="wetland-legend">
+            <span><i class="wetland-dot" style="background:#1baf7a"></i>湧水・井戸</span>
+            <span><i class="wetland-dot" style="background:#e87ba4"></i>池・沼</span>
+            <span><i class="wetland-dot" style="background:#4a3aa7"></i>河川・水路</span>
+            <span><i class="wetland-dot" style="background:#eda100"></i>湿地・湿原</span>
+            <span><i class="wetland-dot" style="background:#898781"></i>その他</span>
+            <span><i class="wetland-dot" style="border:2px solid #e34948;background:transparent"></i>赤枠＝消失/変化の記録あり</span>
+          </div>
+          <p class="panel-note panel-note-inline">
+            出典: <a href="https://atlas-eco-saitama-pref-saitama.hub.arcgis.com/apps/50e96c8bc0cf4bd29418301d7640b33d/explore" target="_blank" rel="noopener">Atlas Eco Saitama「1997年版 埼玉県湿地湧水地台帳」</a>。
+            埼玉県環境生活部自然環境課が1997年に作成した湿地・湧水地マップをデジタル化したもの（計894地点）。
+            <strong>1997年時点のスナップショットであり、現況とは大きく異なる場合があります。</strong>
+            カテゴリは名称文字列からアプリ側で推定した分類です（出典データの正式区分ではありません）。
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. 背景地形レイヤー -->
+      <section class="layer-group">
+        <div class="layer-header"><strong>背景地形</strong></div>
+        <div class="layer-controls">
+          <label>
+            <input type="checkbox" id="toggle-hillshade" />
+            陰影段彩図
+          </label>
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-hillshade" min="0" max="1" step="0.05" value="0.6" />
+          </label>
+          <label>
+            <input type="checkbox" id="toggle-slope" />
+            傾斜量図
+          </label>
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-slope" min="0" max="1" step="0.05" value="0.6" />
+          </label>
+        </div>
+      </section>
+
+      <p class="panel-note">
+        ※ 既知湧水地点（環境省公表データ）と1997年湿地湧水地台帳（Atlas Eco Saitama公表データ）は
+        実データです。湧水ポテンシャルスコア・週別降水量は現状ダミーデータです。実データへの
+        差し替え手順は <a href="README.md" target="_blank" rel="noopener">web/README.md</a> を参照してください。
+      </p>
+    </aside>
+
+    <!-- ---------- 中央: 地図 ---------- -->
+    <main id="map-container">
+      <div id="map"></div>
+    </main>
+
+    <!-- ---------- 右: クリック情報サイドパネル ---------- -->
+    <aside id="info-panel" class="panel hidden">
+      <div class="panel-header-row">
+        <h2>地点の詳細</h2>
+        <button id="close-info-panel" class="icon-button" title="閉じる">✕</button>
+      </div>
+      <div id="info-panel-content">
+        <p class="panel-placeholder">地図上のポテンシャルグリッドをクリックすると、
+          スコアの内訳（TWI・HAND・地質境界距離など）がここに表示されます。</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==================== 下部: テーブルビュー ==================== -->
+  <section id="table-panel">
+    <div class="table-panel-header">
+      <div class="tabs">
+        <button class="tab-button active" data-tab="springs">既知湧水地点</button>
+        <button class="tab-button" data-tab="potential">ポテンシャルグリッド</button>
+        <button class="tab-button" data-tab="wetland1997">1997年湿地台帳</button>
+      </div>
+      <div class="table-panel-actions">
+        <span id="table-row-count" class="row-count"></span>
+        <button id="btn-download-csv">CSVダウンロード</button>
+        <button id="btn-download-geojson">GeoJSONダウンロード</button>
+        <button id="toggle-table-panel" class="icon-button" title="テーブルの表示切替">▾</button>
+      </div>
+    </div>
+    <div id="table-panel-body">
+      <div class="table-scroll">
+        <table id="data-table">
+          <thead><tr></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- アプリ本体スクリプト（ESモジュール。file://直開きではCORSで動かないため、
+       README記載のローカルサーバー経由で開いてください） -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+/* ==========================================================
+   埼玉県 湧水ポテンシャルマップ - スタイルシート
+   レイアウト: ヘッダー / (左パネル + 地図 + 右パネル) / 下部テーブル
+   ========================================================== */
+
+:root {
+  --surface-1: #fcfcfb;
+  --surface-2: #f4f3f0;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border: rgba(11, 11, 11, 0.12);
+  --accent: #2a78d6;
+  --accent-dark: #184f95;
+  --header-height: 56px;
+  --table-panel-height: 260px;
+  --panel-width: 300px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-1: #1a1a19;
+    --surface-2: #232322;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border: rgba(255, 255, 255, 0.12);
+    --accent: #3987e5;
+    --accent-dark: #6da7ec;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+  color: var(--text-primary);
+  background: var(--surface-1);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- ヘッダー ---------- */
+#app-header {
+  height: var(--header-height);
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+}
+#app-header h1 { font-size: 16px; margin: 0; white-space: nowrap; }
+.header-sub {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- 3カラム本体 ---------- */
+#app-body {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+
+.panel {
+  width: var(--panel-width);
+  flex: 0 0 auto;
+  background: var(--surface-1);
+  overflow-y: auto;
+  padding: 12px 16px;
+}
+#layer-panel { border-right: 1px solid var(--border); }
+#info-panel { border-left: 1px solid var(--border); }
+#info-panel.hidden { display: none; }
+
+.panel h2 { font-size: 14px; margin: 4px 0 12px; color: var(--text-primary); }
+.panel-header-row { display: flex; align-items: center; justify-content: space-between; }
+
+#map-container { flex: 1 1 auto; position: relative; min-width: 0; }
+#map { position: absolute; inset: 0; }
+
+/* ---------- レイヤーグループ ---------- */
+.layer-group {
+  border-top: 1px solid var(--border);
+  padding: 10px 0;
+}
+.layer-group:first-of-type { border-top: none; }
+.layer-header label { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.layer-controls { margin-top: 8px; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+.layer-controls label { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.slider-label { display: flex; flex-direction: column; align-items: stretch !important; gap: 2px !important; }
+.slider-label input[type="range"] { width: 100%; }
+
+.week-controls { display: flex; align-items: center; gap: 8px; }
+.week-controls input[type="range"] { flex: 1; }
+#week-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; min-width: 74px; text-align: right; font-variant-numeric: tabular-nums; }
+
+.legend { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.legend-bar { flex: 1; height: 8px; border-radius: 4px; border: 1px solid var(--border); }
+.legend-bar-blue { background: linear-gradient(to right, #cde2fb, #5598e7, #0d366b); }
+.legend-bar-orange { background: linear-gradient(to right, #fde3d3, #eb6834, #7a2c0f); }
+
+.panel-note { font-size: 11px; color: var(--text-muted); margin-top: 16px; line-height: 1.5; }
+.panel-note a { color: var(--accent); }
+.panel-note-inline { margin-top: 4px; }
+.accuracy-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 2px solid #eb6834; background: transparent; margin-right: 2px; vertical-align: middle; }
+
+.wetland-legend { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+.wetland-legend span { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.wetland-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+
+.panel-placeholder { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+/* ---------- 情報パネルの内訳表 ---------- */
+.info-title { font-size: 14px; font-weight: 700; margin: 0 0 4px; }
+.info-sub { font-size: 11px; color: var(--text-muted); margin: 0 0 12px; }
+.info-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.info-table th, .info-table td { text-align: left; padding: 5px 4px; border-bottom: 1px solid var(--border); }
+.info-table th { color: var(--text-secondary); font-weight: 500; width: 55%; }
+.info-table td { font-variant-numeric: tabular-nums; text-align: right; }
+.info-score-bar-wrap { margin-top: 10px; }
+.info-score-bar-bg { background: var(--surface-2); border-radius: 4px; height: 10px; overflow: hidden; margin-top: 4px; }
+.info-score-bar-fill { height: 100%; background: var(--accent); }
+
+/* ---------- ボタン類 ---------- */
+button {
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+button:hover { background: var(--border); }
+.icon-button { background: transparent; border: none; padding: 4px 8px; }
+.icon-button:hover { background: var(--surface-2); border-radius: 6px; }
+
+/* ---------- 下部テーブルパネル ---------- */
+#table-panel {
+  flex: 0 0 auto;
+  height: var(--table-panel-height);
+  border-top: 1px solid var(--border);
+  background: var(--surface-1);
+  display: flex;
+  flex-direction: column;
+  transition: height 0.15s ease;
+}
+#table-panel.collapsed { height: 40px; }
+#table-panel.collapsed #table-panel-body { display: none; }
+
+.table-panel-header {
+  flex: 0 0 auto;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border);
+}
+.tabs { display: flex; gap: 4px; }
+.tab-button { background: transparent; border: none; border-bottom: 2px solid transparent; border-radius: 0; padding: 8px 10px; color: var(--text-secondary); }
+.tab-button.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.table-panel-actions { display: flex; align-items: center; gap: 8px; }
+.row-count { font-size: 11px; color: var(--text-muted); }
+
+#table-panel-body { flex: 1 1 auto; min-height: 0; }
+.table-scroll { height: 100%; overflow: auto; }
+
+#data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+#data-table thead { position: sticky; top: 0; background: var(--surface-2); z-index: 1; }
+#data-table th, #data-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+#data-table th { cursor: pointer; color: var(--text-secondary); user-select: none; }
+#data-table th:hover { color: var(--text-primary); }
+#data-table th.sort-asc::after { content: " \25B2"; }
+#data-table th.sort-desc::after { content: " \25BC"; }
+#data-table td { font-variant-numeric: tabular-nums; }
+#data-table tbody tr:hover { background: var(--surface-2); }
+
+/* ---------- MapLibre ポップアップ内の簡易スタイル ---------- */
+.spring-popup { max-width: 260px; }
+.spring-popup h3 { margin: 0 0 4px; font-size: 13px; }
+.spring-popup-desc { font-size: 11px; color: #333; margin: 0 0 6px; line-height: 1.5; }
+.spring-popup-warn { font-size: 11px; color: #b8431a; font-weight: 700; margin: 0 0 6px; }
+.spring-popup-note { font-size: 10px; color: #888; margin: 6px 0 0; line-height: 1.4; }
+.spring-popup table { font-size: 11px; border-collapse: collapse; width: 100%; }
+.spring-popup td { padding: 2px 4px; vertical-align: top; }
+.spring-popup td:first-child { color: #666; white-space: nowrap; }
+
+/* ---------- レスポンシブ（最低限、モバイルでも崩れない程度） ---------- */
+@media (max-width: 880px) {
+  :root { --panel-width: 240px; }
+  #app-header h1 { font-size: 14px; }
+  .header-sub { display: none; }
+
+  #app-body { position: relative; }
+  #layer-panel {
+    position: absolute;
+    z-index: 5;
+    top: 0; bottom: 0; left: 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  }
+  #layer-panel.hidden { display: none; }
+  #info-panel {
+    position: absolute;
+    z-index: 5;
+    top: 0; bottom: 0; right: 0;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+  }
+  #table-panel { height: 200px; }
+}
