@@ -59,7 +59,7 @@ function refreshFieldSurveyLayer() {
 }
 
 /**
- * ポップアップを開き、中に含まれる「📝 現地調査を記録」「🗑 下書きを削除」ボタンを配線する。
+ * ポップアップを開き、中に含まれる「📝 現地調査を記録」「✏️ 編集」「🗑 削除」ボタンを配線する。
  * ポップアップHTMLはlayers.js側で文字列として組み立てているため、DOMに挿入された後に
  * イベントリスナーを付け直す必要がある（=イベント委譲）。
  */
@@ -74,6 +74,31 @@ function openDetailPopup(lngLat, html) {
       const clickedAt = popup.getLngLat();
       popup.remove();
       openSurveyForm({ targetDataset, targetId, targetName, lngLat: clickedAt });
+    });
+  }
+
+  const editBtn = el.querySelector(".popup-edit-draft-btn");
+  if (editBtn) {
+    editBtn.addEventListener("click", () => {
+      const draft = fieldSurveyStore.getDraft(editBtn.dataset.draftId);
+      if (!draft) {
+        window.alert("この下書きは見つかりませんでした（既に削除された可能性があります）。");
+        return;
+      }
+      popup.remove();
+      openSurveyForm({
+        editingId: draft.properties.id,
+        targetDataset: draft.properties.target_dataset,
+        targetId: draft.properties.target_id,
+        targetName: draft.properties.target_name,
+        lngLat: { lng: draft.geometry.coordinates[0], lat: draft.geometry.coordinates[1] },
+        status: draft.properties.status,
+        surveyedAt: draft.properties.surveyed_at,
+        surveyor: draft.properties.surveyor,
+        addressNote: draft.properties.address_note,
+        notes: draft.properties.notes,
+        photoUrl: draft.properties.photo_url
+      });
     });
   }
 
@@ -490,27 +515,47 @@ document.getElementById("btn-clear-survey-drafts").addEventListener("click", () 
 const surveyFormOverlay = document.getElementById("survey-form-overlay");
 const surveyForm = document.getElementById("survey-form");
 
-/** フォームを開き、対象地点の情報（あれば）で初期値を埋める */
-function openSurveyForm({ targetDataset, targetId, targetName, lngLat }) {
+// 編集中の下書きのID。nullなら新規作成モード（送信時にaddDraft/updateDraftのどちらを呼ぶか判定に使う）
+let editingDraftId = null;
+
+/**
+ * フォームを開き、対象地点の情報で初期値を埋める。
+ * editingId を渡すと「編集モード」になり、送信時に新規追加ではなく該当下書きの更新を行う。
+ */
+function openSurveyForm({
+  targetDataset, targetId, targetName, lngLat,
+  editingId = null, status, surveyedAt, surveyor, addressNote, notes, photoUrl
+}) {
+  editingDraftId = editingId;
   document.getElementById("survey-target-dataset").value = targetDataset;
   document.getElementById("survey-target-id").value = targetId || "";
   document.getElementById("survey-target-name").value = targetName || "";
-  document.getElementById("survey-date").value = new Date().toISOString().slice(0, 10);
-  document.getElementById("survey-status").value = "湧出中";
+  document.getElementById("survey-date").value = surveyedAt || new Date().toISOString().slice(0, 10);
+  document.getElementById("survey-status").value = status || "湧出中";
   document.getElementById("survey-lng").value = lngLat.lng.toFixed(6);
   document.getElementById("survey-lat").value = lngLat.lat.toFixed(6);
-  document.getElementById("survey-address-note").value = "";
-  document.getElementById("survey-surveyor").value = "";
-  document.getElementById("survey-notes").value = "";
-  document.getElementById("survey-photo-url").value = "";
-  document.getElementById("survey-form-title").textContent =
-    targetDataset === "new" ? "現地調査を記録（新規地点）" : `現地調査を記録: ${targetName}`;
+  document.getElementById("survey-address-note").value = addressNote || "";
+  document.getElementById("survey-surveyor").value = surveyor || "";
+  document.getElementById("survey-notes").value = notes || "";
+  document.getElementById("survey-photo-url").value = photoUrl || "";
+
+  const submitBtn = surveyForm.querySelector("button[type=submit]");
+  if (editingId) {
+    document.getElementById("survey-form-title").textContent = `現地調査記録を編集: ${targetName}`;
+    submitBtn.textContent = "更新を保存";
+  } else {
+    document.getElementById("survey-form-title").textContent =
+      targetDataset === "new" ? "現地調査を記録（新規地点）" : `現地調査を記録: ${targetName}`;
+    submitBtn.textContent = "下書きに保存";
+  }
+
   surveyFormOverlay.classList.remove("hidden");
   document.getElementById("survey-target-name").focus();
 }
 
 function closeSurveyForm() {
   surveyFormOverlay.classList.add("hidden");
+  editingDraftId = null;
 }
 
 document.getElementById("survey-form-close").addEventListener("click", closeSurveyForm);
@@ -538,7 +583,7 @@ document.getElementById("survey-use-gps").addEventListener("click", () => {
 
 surveyForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  fieldSurveyStore.addDraft({
+  const entry = {
     targetDataset: document.getElementById("survey-target-dataset").value || "new",
     targetId: document.getElementById("survey-target-id").value || null,
     targetName: document.getElementById("survey-target-name").value.trim(),
@@ -550,7 +595,12 @@ surveyForm.addEventListener("submit", (e) => {
     addressNote: document.getElementById("survey-address-note").value.trim(),
     notes: document.getElementById("survey-notes").value.trim(),
     photoUrl: document.getElementById("survey-photo-url").value.trim()
-  });
+  };
+  if (editingDraftId) {
+    fieldSurveyStore.updateDraft(editingDraftId, entry);
+  } else {
+    fieldSurveyStore.addDraft(entry);
+  }
   refreshFieldSurveyLayer();
   closeSurveyForm();
 });

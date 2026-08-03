@@ -223,6 +223,8 @@ button:hover { background: var(--border); }
   width: 100%;
   padding: 6px 8px;
 }
+.popup-actions-row { gap: 6px; }
+.popup-edit-draft-btn { color: #184f95; border-color: #c9dcf2; }
 .popup-delete-draft-btn { color: #b8431a; border-color: #eecfc0; }
 .fieldsurvey-popup-badge { font-size: 10px; color: #008300; font-weight: 700; margin: 0 0 6px; }
 

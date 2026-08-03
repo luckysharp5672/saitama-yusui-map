@@ -37,6 +37,23 @@ function generateId() {
   return `fieldsurvey_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
+/** フォームの入力値(entry)から、GeoJSON Featureのpropertiesを組み立てる（新規・編集共通） */
+function buildProperties(id, entry) {
+  return {
+    id,
+    target_dataset: entry.targetDataset, // "springs" | "wetland1997" | "new"
+    target_id: entry.targetId || null,   // 既存データの id（新規地点はnull）
+    target_name: entry.targetName || "", // 表示用の名称（新規地点は現地で付けた名前）
+    status: entry.status,
+    surveyed_at: entry.surveyedAt,
+    surveyor: entry.surveyor || "",
+    address_note: entry.addressNote || "",
+    notes: entry.notes || "",
+    photo_url: entry.photoUrl || "",
+    is_draft: true // エクスポート後に見分けが付くよう残しておく（表示上の参考用）
+  };
+}
+
 /**
  * 現地調査の下書きを管理するストアを作る。
  * 画面をまたいで同じ状態を参照できるよう、main.js側で1つだけ生成して使う。
@@ -50,6 +67,11 @@ export function createFieldSurveyStore() {
       return drafts;
     },
 
+    /** idを指定して下書き1件を取得する（編集フォームの初期値を埋めるのに使う） */
+    getDraft(id) {
+      return drafts.find((f) => f.properties.id === id) || null;
+    },
+
     /**
      * 新しい現地調査記録を下書きとして追加する。
      * @param {object} entry - フォームから集めた入力値
@@ -60,21 +82,25 @@ export function createFieldSurveyStore() {
       const feature = {
         type: "Feature",
         geometry: { type: "Point", coordinates: [entry.lng, entry.lat] },
-        properties: {
-          id: generateId(),
-          target_dataset: entry.targetDataset, // "springs" | "wetland1997" | "new"
-          target_id: entry.targetId || null,   // 既存データの id（新規地点はnull）
-          target_name: entry.targetName || "", // 表示用の名称（新規地点は現地で付けた名前）
-          status: entry.status,
-          surveyed_at: entry.surveyedAt,
-          surveyor: entry.surveyor || "",
-          address_note: entry.addressNote || "",
-          notes: entry.notes || "",
-          photo_url: entry.photoUrl || "",
-          is_draft: true // エクスポート後に見分けが付くよう残しておく（表示上の参考用）
-        }
+        properties: buildProperties(generateId(), entry)
       };
       drafts = [...drafts, feature];
+      saveDraftsToStorage(drafts);
+      return feature;
+    },
+
+    /**
+     * 既存の下書き（まだエクスポート/commitしていないもの）を編集する。
+     * 確定済み（サーバーから読み込んだ）レコードはここでは扱えない
+     * （静的サイトのためクライアントからリポジトリのファイルを書き換えられない）。
+     */
+    updateDraft(id, entry) {
+      const feature = {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [entry.lng, entry.lat] },
+        properties: buildProperties(id, entry)
+      };
+      drafts = drafts.map((f) => (f.properties.id === id ? feature : f));
       saveDraftsToStorage(drafts);
       return feature;
     },

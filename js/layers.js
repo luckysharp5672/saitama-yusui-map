@@ -373,9 +373,11 @@ export function buildFieldSurveyPopupHTML(props) {
       </table>
       ${props.notes ? `<p class="spring-popup-desc">${escapeHTML(props.notes)}</p>` : ""}
       ${props.is_draft ? `
-        <div class="popup-actions">
-          <button type="button" class="popup-delete-draft-btn" data-draft-id="${escapeHTML(props.id)}">🗑 この下書きを削除</button>
-        </div>` : ""}
+        <div class="popup-actions popup-actions-row">
+          <button type="button" class="popup-edit-draft-btn" data-draft-id="${escapeHTML(props.id)}">✏️ 編集</button>
+          <button type="button" class="popup-delete-draft-btn" data-draft-id="${escapeHTML(props.id)}">🗑 削除</button>
+        </div>` : `
+        <p class="spring-popup-note">※ エクスポート・commit済みの確定レコードのため、この画面からは編集できません。修正する場合は新しい記録として追加してください。</p>`}
     </div>`;
 }
 
