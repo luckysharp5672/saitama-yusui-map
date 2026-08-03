@@ -1,9 +1,10 @@
 # data/ ディレクトリについて
 
-フロントエンドが `fetch()` で直接読み込む静的データ一式です。`springs.geojson` と
-`wetland_1997.geojson` は実データ、`potential_grid.geojson` と `rainfall_weekly.json` は
-ダミーデータ（乱数生成、または簡略化した架空の値）です。ダミーデータの実データへの
-差し替え方法は [../README.md](../README.md) の「実データへの差し替え」を参照してください。
+フロントエンドが `fetch()` で直接読み込む静的データ一式です。`springs.geojson`・
+`wetland_1997.geojson`・`potential_grid.geojson`・`geology_boundary.geojson`・
+`field_survey.geojson` は実データ、`rainfall_weekly.json` のみダミーデータ（簡略化した
+架空の値）です。`rainfall_weekly.json` の実データへの差し替え方法は
+[../README.md](../README.md) の「実データへの差し替え」を参照してください。
 
 ## springs.geojson — 既知湧水地点（実データ）
 
@@ -103,25 +104,73 @@
 
 初期状態は空の `FeatureCollection` です。
 
-## potential_grid.geojson — 湧水ポテンシャルスコアグリッド
+## geology_boundary.geojson — 地質境界線（実データ）
 
-`scripts/compute_potential.py` の出力形式。Polygon Feature（グリッドセル）の配列。
+産業技術総合研究所「20万分の1日本シームレス地質図V2」の全国シェープファイルから、
+対象エリア（横瀬町・秩父地域、バッファ込み）と交差する地質境界線・断層線だけを
+[web/scripts/extract_geology_boundary.js](../scripts/extract_geology_boundary.js) で
+切り出したもの。326件のMultiLineString Feature（境界線・断層線を区別せず一括で
+「地質境界」として扱っている）。`potential_grid.geojson` の `dist_to_boundary` の
+算出にのみ使用し、地図上には表示していない。
+
+出典: 産業技術総合研究所 地質調査総合センター「20万分の1日本シームレス地質図V2」
+（https://gbank.gsj.jp/seamless/ ）。政府標準利用規約(第2.0版)相当のライセンスで、
+出典明記の上で商用利用・改変を含め二次利用可。
+
+## potential_grid.geojson — 湧水ポテンシャルスコアグリッド（実データ・パイロットエリアのみ）
+
+**横瀬町・秩父地域のパイロットエリア（既存のグリッド範囲、46×46=2,116セル、250m格子）に
+限り実データです。** それ以外の地域は未算出（このアプリはこのエリアのみを表示対象にしている）。
+[web/scripts/compute_potential.js](../scripts/compute_potential.js) で算出。
+Polygon Feature（グリッドセル）の配列。
 
 | プロパティ | 内容 |
 |---|---|
 | `cell_id` | グリッドセルの識別子 |
-| `score` | 湧水ポテンシャルスコア（0-1、加重和） |
-| `twi` | 地形湿潤指数（Topographic Wetness Index） |
-| `hand` | HAND（Height Above Nearest Drainage, m） |
-| `dist_to_boundary` | 地質境界（透水層/不透水層境界）までの距離（m） |
-| `curvature` | 曲率（遷急線・遷緩線への近さの指標） |
-| `spring_kde` | 既知湧水地点のカーネル密度（クロスバリデーション用） |
+| `score` | 湧水ポテンシャルスコア（0-1、5指標の加重和） |
+| `twi` | 地形湿潤指数（Topographic Wetness Index）。DEMから自前計算 |
+| `hand` | HAND（Height Above Nearest Drainage, m）。DEMから自前計算 |
+| `dist_to_boundary` | 最寄りの地質境界線までの距離（m）。`geology_boundary.geojson`から算出 |
+| `curvature` | 曲率（ラプラシアン近似、遷急線・遷緩線＝傾斜変換点の指標）。DEMから自前計算 |
+| `spring_kde` | 既知湧水地点(`springs.geojson`)のガウスカーネル密度（0-1に正規化済み） |
 
-**出典（実データ利用時）**: 標高=国土地理院 基盤地図情報数値標高モデル（DEM10m）、
-TWI/HAND=環境省EADAS 全国30mメッシュ、地質境界=産業技術総合研究所「地質図Navi」。
+### 算出方法（重要）
 
-現在のダミー版はグリッドセル約2,100件、250m相当のメッシュサイズで秩父・横瀬周辺を
-カバーしています（実データ生成ロジックは未実装、乱数ベースの見た目だけの分布です）。
+このPCにPython実行環境が無かったため、`scripts/compute_potential.py`
+（設計意図を示す雛形として残置）の代わりに **Node.js** で実装している。
+
+1. **DEM取得**: [web/scripts/fetch_dem.js](../scripts/fetch_dem.js) が
+   国土地理院DEM5A（5mメッシュ、精密標高基盤）タイルを対象エリア分取得・合成
+   （出力は `scripts/raw/dem_grid.*`、重いため`.gitignore`対象）。
+2. **地形指標計算**: [web/scripts/hydrology.js](../scripts/hydrology.js) が
+   窪地埋め→Horn法による傾斜・曲率→D8法による流向・集水セル数（フローアキュムレーション）
+   →TWI→水路抽出＋比高計算によるHAND、を実装（外部GISライブラリ非依存の自前実装）。
+3. **250mグリッドへの集約**: 高解像度（約7.7m/px）のラスターを、出力グリッドの各セル
+   範囲内で平均して集約。
+4. **地質境界距離**: `geology_boundary.geojson` の全セグメントとの最短距離を
+   セル中心ごとに計算（力任せ探索。セグメント数326・セル数2,116なので十分高速）。
+5. **正規化・重み付け**: 各指標をmin-max正規化（HAND・地質境界距離は値が小さいほど
+   湧水しやすいため反転）し、`compute_potential.py`と同じ重み
+   （TWI 0.30 / HAND 0.30 / 曲率 0.15 / 地質境界 0.15 / 湧水KDE 0.10）で加重和。
+
+**検証**: 対象エリア内の既知湧水地点（`springs.geojson`）12件の平均scoreは0.648で、
+グリッド全体平均0.511より明確に高く、HANDもグリッド中央値35mに対し湧水地点中央値6mと
+大きく低い（＝湧水地点は水路に近い低比高地に集中）。地形指標が物理的に妥当な傾向を
+捉えていることを確認済み（ただし`spring_kde`自体が既知湧水地点から算出されるため、
+この検証は独立した裏付けというよりは整合性チェックである点に留意）。
+
+### 実データの再生成・他エリアへの拡張
+
+```bash
+cd scripts
+node fetch_dem.js                  # DEM取得（対象エリアのbboxはfetch_dem.js内で指定）
+node extract_geology_boundary.js   # 地質境界抽出（初回のみ約250MBのzipをダウンロード）
+node compute_potential.js          # 上記2つの出力から potential_grid.geojson を生成
+```
+
+対象エリアを広げたい場合は、`fetch_dem.js`・`extract_geology_boundary.js`・
+`compute_potential.js` それぞれの `BBOX` / `OUTPUT_GRID` 定数を変更してください
+（DEMタイル数・計算量が面積に比例して増える点に注意）。
 
 ## rainfall_weekly.json — 週別降水量
 
@@ -148,4 +197,4 @@ TWI/HAND=環境省EADAS 全国30mメッシュ、地質境界=産業技術総合�
 ## ライセンス・出典に関する注意
 
 上記いずれの実データも、公開元の利用規約に従い出典表記・二次利用条件を遵守してください。
-本リポジトリのダミーデータは実在の湧水・観測値とは無関係の架空の値です。
+`rainfall_weekly.json`（ダミーデータ）は実在の観測値とは無関係の架空の値です。

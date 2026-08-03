@@ -15,7 +15,7 @@
   <!-- ==================== ヘッダー ==================== -->
   <header id="app-header">
     <h1>埼玉県 湧水ポテンシャルマップ</h1>
-    <p class="header-sub">既知湧水地点・1997年湿地台帳（実データ） × 湧水ポテンシャルスコア × 週別降水量（ポテンシャル・降水量はダミーデータ）</p>
+    <p class="header-sub">既知湧水地点・1997年湿地台帳・湧水ポテンシャルスコア（実データ） × 週別降水量（ダミーデータ）</p>
     <button id="toggle-layer-panel" class="icon-button" title="レイヤーパネルの表示切替">☰ レイヤー</button>
   </header>
 
@@ -101,6 +101,11 @@
           <div class="legend legend-sequential" id="legend-potential">
             <span>0</span><span class="legend-bar legend-bar-blue"></span><span>1</span>
           </div>
+          <p class="panel-note panel-note-inline">
+            横瀬町・秩父地域のパイロットエリアのみ実データ（DEM5m×TWI×HAND×曲率×地質境界距離×既知湧水KDE
+            から算出。<a href="README.md#湧水ポテンシャルスコアの算出について" target="_blank" rel="noopener">算出方法</a>）。
+            エリア外にダミーデータは表示していません。
+          </p>
         </div>
       </section>
 
@@ -181,8 +186,9 @@
       </section>
 
       <p class="panel-note">
-        ※ 既知湧水地点（環境省公表データ）と1997年湿地湧水地台帳（Atlas Eco Saitama公表データ）は
-        実データです。湧水ポテンシャルスコア・週別降水量は現状ダミーデータです。実データへの
+        ※ 既知湧水地点（環境省公表データ）・1997年湿地湧水地台帳（Atlas Eco Saitama公表データ）・
+        湧水ポテンシャルスコア（横瀬町・秩父地域のパイロットエリアのみ、DEM等から算出）は実データです。
+        週別降水量は現状ダミーデータです。実データへの
         差し替え手順は <a href="README.md" target="_blank" rel="noopener">web/README.md</a> を参照してください。
       </p>
     </aside>

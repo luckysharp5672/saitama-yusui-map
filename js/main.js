@@ -302,7 +302,7 @@ function showInfoPanel(props) {
   const scorePct = Math.round(props.score * 100);
   content.innerHTML = `
     <p class="info-title">セル: ${props.cell_id}</p>
-    <p class="info-sub">湧水ポテンシャルスコアの内訳（ダミーデータ）</p>
+    <p class="info-sub">湧水ポテンシャルスコアの内訳（DEM等から算出した実データ）</p>
     <div class="info-score-bar-wrap">
       <div>総合スコア: <strong>${props.score.toFixed(3)}</strong></div>
       <div class="info-score-bar-bg"><div class="info-score-bar-fill" style="width:${scorePct}%"></div></div>

@@ -17,7 +17,11 @@ Vanilla JS + CDNライブラリのみ）で、GitHub Pages にそのまま公開
   [1997年版 埼玉県湿地湧水地台帳](https://atlas-eco-saitama-pref-saitama.hub.arcgis.com/apps/50e96c8bc0cf4bd29418301d7640b33d/explore)
   （ArcGIS FeatureServer）から894地点を [scripts/fetch_wetland_1997.js](scripts/fetch_wetland_1997.js)
   で取得したもの。1997年時点のスナップショットで、現況とは異なる場合がある点に注意してください。
-- **湧水ポテンシャルスコア・週別降水量はダミーデータです。** 実データへの差し替え手順は
+- **湧水ポテンシャルスコア（potential_grid.geojson）も実データです（横瀬町・秩父地域の
+  パイロットエリアのみ）。** 国土地理院DEM5A・自前計算のTWI/HAND・産総研の地質境界データ・
+  既知湧水地点KDEから算出しています。詳細は
+  [「湧水ポテンシャルスコアの算出について」](#湧水ポテンシャルスコアの算出について)を参照してください。
+- **週別降水量（rainfall_weekly.json）のみダミーデータです。** 実データへの差し替え手順は
   本ファイル下部を参照してください。
 - **現地調査記録（field_survey.geojson）は、あなたがこのアプリを使って記録していくデータです。**
   上記の実データ（springs.geojson / wetland_1997.geojson）は書き換えず、現地で確認した
@@ -29,7 +33,7 @@ Vanilla JS + CDNライブラリのみ）で、GitHub Pages にそのまま公開
 - **左パネル**: レイヤーコントロール（表示ON/OFF・不透明度・閾値スライダー）
   1. 既知湧水地点（環境省データ、実データ）
   2. 1997年湿地湧水地台帳（歴史データ、実データ。カテゴリ別5色、「湧水・井戸」のみ絞り込み可）
-  3. 湧水ポテンシャルスコア（青の連続配色ヒートマップ、スコア閾値で絞り込み可、ダミーデータ）
+  3. 湧水ポテンシャルスコア（青の連続配色ヒートマップ、スコア閾値で絞り込み可、実データ＝パイロットエリアのみ）
   4. 背景地形（陰影段彩図・傾斜量図、国土地理院タイル）
   5. 週別降水量（オレンジの連続配色、週スライダー＋再生ボタンでアニメーション、ダミーデータ）
   6. 現地調査記録（✓確認済み/！要再訪のバッジ。あなたが記録するデータ、詳細は下記）
@@ -102,6 +106,34 @@ npx serve .
 - 写真は画像ファイル自体を保存する仕組みは無く、URL（Google Photos等の共有リンク）を
   貼り付ける運用です。
 
+## 湧水ポテンシャルスコアの算出について
+
+横瀬町・秩父地域のパイロットエリア（既存グリッドと同じ範囲、46×46=2,116セル、250m格子）に
+限り、地形・地質データから実際に算出したスコアです。このPCにPython実行環境が無かったため、
+[scripts/compute_potential.py](scripts/compute_potential.py)（設計意図を示す雛形として残置）
+の代わりに、他のデータ取得スクリプトと同じくNode.jsで実装しています。
+
+- **DEM**: 国土地理院DEM5A（5mメッシュ、精密標高基盤）タイルを対象エリア分取得・合成
+  （[scripts/fetch_dem.js](scripts/fetch_dem.js) + [scripts/dem_tiles.js](scripts/dem_tiles.js)）
+- **TWI・HAND・曲率**: 上記DEMから、窪地埋め→傾斜（Horn法）→D8流向→集水セル数
+  （フローアキュムレーション）→TWI、水路抽出→HAND、をすべて自前実装
+  （[scripts/hydrology.js](scripts/hydrology.js)。外部GISライブラリ非依存）
+- **地質境界距離**: 産業技術総合研究所「20万分の1日本シームレス地質図V2」の全国
+  シェープファイル（約250MB）から対象エリア分の境界線・断層線だけを切り出し
+  （[scripts/extract_geology_boundary.js](scripts/extract_geology_boundary.js)。
+  自前のZIP/Shapefileリーダー（[scripts/zip_reader.js](scripts/zip_reader.js)・
+  [scripts/shapefile_reader.js](scripts/shapefile_reader.js)）で、npm依存なしにパースしている）、
+  各セル中心からの最短距離を計算
+- **既知湧水KDE**: `data/springs.geojson` の地点からガウスカーネル密度を計算
+- 上記5指標をmin-max正規化（HAND・地質境界距離は反転）し、`compute_potential.py`と同じ重み
+  （TWI 0.30 / HAND 0.30 / 曲率 0.15 / 地質境界 0.15 / 湧水KDE 0.10）で加重和 =
+  [scripts/compute_potential.js](scripts/compute_potential.js)
+
+**検証結果**: 対象エリア内の既知湧水地点12件の平均scoreは0.648で、グリッド全体平均0.511より
+明確に高く、HANDもグリッド中央値35mに対し湧水地点中央値6mと大きく低い値でした。地形指標が
+物理的に妥当な傾向を捉えていることを確認しています（詳細は
+[data/README.md](data/README.md#算出方法重要) 参照）。
+
 ## 実データへの差し替え・更新
 
 ### 1. 既知湧水地点（springs.geojson）
@@ -144,17 +176,20 @@ ArcGIS FeatureServerに直接クエリして `../data/wetland_1997.geojson` を�
 
 ### 3. 湧水ポテンシャルスコア（potential_grid.geojson）
 
-[scripts/compute_potential.py](scripts/compute_potential.py) が算出パイプラインの雛形です。
-現状は各指標の計算関数が `NotImplementedError` の骨組みのみなので、以下を用意したうえで実装してください。
+実装済み（Node.js版）です。DEMや地質図の更新に合わせて再生成する場合は以下を順に実行してください。
 
-- DEM10m（国土地理院 基盤地図情報数値標高モデル）
-- TWI/HAND（環境省EADAS 全国30mメッシュ、または自前計算）
-- 地質境界ベクター（産業技術総合研究所「地質図Navi」）
-- `data/springs.geojson`（クロスバリデーション用の既知湧水地点）
+```bash
+cd scripts
+node fetch_dem.js                  # 対象エリアのDEMを取得（scripts/raw/に保存、.gitignore対象）
+node extract_geology_boundary.js   # 地質境界抽出（初回のみ約250MBのzipをダウンロード）
+node compute_potential.js          # data/potential_grid.geojson を生成
+```
 
-重み付けは `compute_potential.py` 内の `Weights` データクラスで一元管理しています。
-正規化方式（min-max）や出力プロパティ（`score, twi, hand, dist_to_boundary, curvature,
-spring_kde`）もコメントに明記してあるので、そちらを参照しながら実装してください。
+重みは [scripts/compute_potential.js](scripts/compute_potential.js) 冒頭の `RAW_WEIGHTS` で
+一元管理しています。対象エリアを広げたい場合は、`fetch_dem.js`・`extract_geology_boundary.js`・
+`compute_potential.js` それぞれの `BBOX` / `OUTPUT_GRID` 定数を変更してください（計算量は
+面積にほぼ比例して増えます）。算出方法の詳細は
+[「湧水ポテンシャルスコアの算出について」](#湧水ポテンシャルスコアの算出について)を参照してください。
 
 ### 4. 週別降水量（rainfall_weekly.json）
 
