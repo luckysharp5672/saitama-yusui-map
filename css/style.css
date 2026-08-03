@@ -137,6 +137,9 @@ body {
 .info-table td { font-variant-numeric: tabular-nums; text-align: right; }
 .info-score-bar-wrap { margin-top: 10px; }
 .info-score-bar-bg { background: var(--surface-2); border-radius: 4px; height: 10px; overflow: hidden; margin-top: 4px; }
+/* 複数セル選択時、スコア内訳カードを縦に積み上げるための区切り（#info-panel自体が
+   overflow-y:autoなので、積み上げた分は縦スクロールで見られる） */
+.info-block-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
 .info-score-bar-fill { height: 100%; background: var(--accent); }
 
 /* ---------- ボタン類 ---------- */
@@ -199,7 +202,12 @@ button:hover { background: var(--border); }
 #data-table tbody tr.selected-row:hover { background: rgba(227, 73, 72, 0.18); }
 
 /* ---------- MapLibre ポップアップ内の簡易スタイル ---------- */
-.spring-popup { max-width: 260px; }
+.spring-popup {
+  max-width: 260px;
+  max-height: 320px;
+  overflow-y: auto;
+  /* 複数ポップアップ同時表示時に、内容が長い地点があっても画面を占領しすぎないようにする */
+}
 .spring-popup h3 { margin: 0 0 4px; font-size: 13px; }
 .spring-popup-desc { font-size: 11px; color: #333; margin: 0 0 6px; line-height: 1.5; }
 .spring-popup-warn { font-size: 11px; color: #b8431a; font-weight: 700; margin: 0 0 6px; }

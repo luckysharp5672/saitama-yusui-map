@@ -96,42 +96,75 @@ function openDetailPopup(lngLat, html) {
 // （行を連続してクリックしたときに、古い選択の詳細が後から出てしまうのを防ぐため）
 let pendingRowSelectMoveEnd = null;
 
+// 行選択によって開いた詳細ポップアップの一覧。選択が変わるたびに全部閉じてから開き直す
+// （地図を直接クリックして開くポップアップとは別管理。あちらは触らない）。
+let tableSelectionPopups = [];
+function clearTableSelectionPopups() {
+  tableSelectionPopups.forEach((p) => p.remove());
+  tableSelectionPopups = [];
+}
+
 /**
- * 下部テーブルの行がクリックされたときの処理。
- * 選択地点を地図上でリング状に強調表示し、その地点が画面内に収まるよう地図を移動したうえで、
- * 移動が完了した後にその地点の詳細情報（ポップアップ／スコア内訳パネル）を自動で表示する。
+ * 下部テーブルの行選択が変わったときの処理。
+ * 選択中の全地点を地図上でリング状に強調表示し、それら全てが画面内に収まるよう地図を
+ * 移動したうえで、移動完了後に選択件数ぶんの詳細情報を表示する
+ * （湧水地点・1997年台帳・現地調査記録タブ→地点ごとに独立したポップアップ、
+ * 　ポテンシャルグリッドタブ→右パネルにスコア内訳カードを選択件数ぶん積み上げて表示）。
+ * 1件だけ選択されていれば、結果として詳細画面も1つだけになる。
  */
-function handleTableRowSelect(row) {
-  if (row.lng == null || row.lat == null) return;
-  const lngLat = [row.lng, row.lat];
-  setHighlight(map, lngLat);
+function handleTableSelectionChange(rows) {
+  clearTableSelectionPopups();
+  const points = rows
+    .filter((r) => r.lng != null && r.lat != null)
+    .map((r) => /** @type {[number, number]} */ ([r.lng, r.lat]));
 
   if (pendingRowSelectMoveEnd) {
     map.off("moveend", pendingRowSelectMoveEnd);
     pendingRowSelectMoveEnd = null;
   }
+
+  if (points.length === 0) {
+    setHighlight(map, null);
+    document.getElementById("info-panel").classList.add("hidden");
+    return;
+  }
+
+  setHighlight(map, points);
+
   pendingRowSelectMoveEnd = () => {
     pendingRowSelectMoveEnd = null;
-    if (state.activeTab === "springs") {
-      openDetailPopup(lngLat, buildSpringPopupHTML(row));
-    } else if (state.activeTab === "wetland1997") {
-      openDetailPopup(lngLat, buildWetland1997PopupHTML(row));
-    } else if (state.activeTab === "fieldsurvey") {
-      openDetailPopup(lngLat, buildFieldSurveyPopupHTML(row));
-    } else if (state.activeTab === "potential") {
-      showInfoPanel(row);
+    if (state.activeTab === "potential") {
+      showInfoPanel(rows);
+    } else {
+      rows.forEach((row) => {
+        if (row.lng == null || row.lat == null) return;
+        const lngLat = [row.lng, row.lat];
+        const html =
+          state.activeTab === "springs" ? buildSpringPopupHTML(row) :
+          state.activeTab === "wetland1997" ? buildWetland1997PopupHTML(row) :
+          buildFieldSurveyPopupHTML(row);
+        tableSelectionPopups.push(openDetailPopup(lngLat, html));
+      });
     }
   };
   map.once("moveend", pendingRowSelectMoveEnd);
 
-  map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13), duration: 600 });
+  if (points.length === 1) {
+    map.easeTo({ center: points[0], zoom: Math.max(map.getZoom(), 13), duration: 600 });
+  } else {
+    const bounds = points.reduce(
+      (b, p) => b.extend(p),
+      new maplibregl.LngLatBounds(points[0], points[0])
+    );
+    map.fitBounds(bounds, { padding: 100, maxZoom: 15, duration: 600 });
+  }
 }
 
 // ---- テーブルコントローラ ----
 const tableController = createTableController(
   document.getElementById("data-table"),
   document.getElementById("table-row-count"),
-  handleTableRowSelect
+  handleTableSelectionChange
 );
 
 const SPRINGS_COLUMNS = [
@@ -274,7 +307,7 @@ map.on("load", async () => {
 
   // ---- ポテンシャルグリッドクリック: サイドパネルにスコア内訳表示 ----
   map.on("click", "potential-fill", (e) => {
-    showInfoPanel(e.features[0].properties);
+    showInfoPanel([e.features[0].properties]);
   });
 
   // ---- 1997年湿地台帳クリック: ポップアップ表示 ----
@@ -296,24 +329,33 @@ map.on("load", async () => {
 });
 
 // ---- サイドパネル（スコア内訳） ----
-function showInfoPanel(props) {
+// 複数セルが選択されている場合は、その件数ぶんカードを積み上げて表示する
+// （#info-panel は元々overflow-y:autoなので、積み上げた分は自動でスクロールできる）。
+function showInfoPanel(propsList) {
   const panel = document.getElementById("info-panel");
   const content = document.getElementById("info-panel-content");
-  const scorePct = Math.round(props.score * 100);
-  content.innerHTML = `
-    <p class="info-title">セル: ${props.cell_id}</p>
-    <p class="info-sub">湧水ポテンシャルスコアの内訳（DEM等から算出した実データ）</p>
-    <div class="info-score-bar-wrap">
-      <div>総合スコア: <strong>${props.score.toFixed(3)}</strong></div>
-      <div class="info-score-bar-bg"><div class="info-score-bar-fill" style="width:${scorePct}%"></div></div>
-    </div>
-    <table class="info-table">
-      <tr><th>地形湿潤指数 TWI</th><td>${props.twi}</td></tr>
-      <tr><th>HAND（最近接水路比高, m）</th><td>${props.hand}</td></tr>
-      <tr><th>地質境界までの距離（m）</th><td>${props.dist_to_boundary}</td></tr>
-      <tr><th>曲率（遷急線/遷緩線指標）</th><td>${props.curvature}</td></tr>
-      <tr><th>既知湧水カーネル密度</th><td>${props.spring_kde}</td></tr>
-    </table>`;
+
+  content.innerHTML = propsList
+    .map((props) => {
+      const scorePct = Math.round(props.score * 100);
+      return `
+    <div class="info-block">
+      <p class="info-title">セル: ${props.cell_id}</p>
+      <p class="info-sub">湧水ポテンシャルスコアの内訳（DEM等から算出した実データ）</p>
+      <div class="info-score-bar-wrap">
+        <div>総合スコア: <strong>${props.score.toFixed(3)}</strong></div>
+        <div class="info-score-bar-bg"><div class="info-score-bar-fill" style="width:${scorePct}%"></div></div>
+      </div>
+      <table class="info-table">
+        <tr><th>地形湿潤指数 TWI</th><td>${props.twi}</td></tr>
+        <tr><th>HAND（最近接水路比高, m）</th><td>${props.hand}</td></tr>
+        <tr><th>地質境界までの距離（m）</th><td>${props.dist_to_boundary}</td></tr>
+        <tr><th>曲率（遷急線/遷緩線指標）</th><td>${props.curvature}</td></tr>
+        <tr><th>既知湧水カーネル密度</th><td>${props.spring_kde}</td></tr>
+      </table>
+    </div>`;
+    })
+    .join('<hr class="info-block-divider" />');
   panel.classList.remove("hidden");
 }
 document.getElementById("close-info-panel").addEventListener("click", () => {
@@ -528,7 +570,10 @@ document.querySelectorAll(".tab-button").forEach((btn) => {
     btn.classList.add("active");
     state.activeTab = btn.dataset.tab;
     refreshTable();
-    setHighlight(map, null); // タブを切り替えたら、別データセットの地点を指したままにならないよう強調表示を消す
+    // タブを切り替えたら、別データセットの選択状態（強調表示・ポップアップ・スコア内訳パネル）を消す
+    setHighlight(map, null);
+    clearTableSelectionPopups();
+    document.getElementById("info-panel").classList.add("hidden");
     document.getElementById("fieldsurvey-export-note").classList.toggle("hidden", state.activeTab !== "fieldsurvey");
   });
 });

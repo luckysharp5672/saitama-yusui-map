@@ -14,9 +14,10 @@ function rowKey(row) {
  * テーブルコントローラを作成する。
  * @param {HTMLTableElement} tableEl - <table id="data-table"> 要素
  * @param {HTMLElement} rowCountEl - 件数表示用要素
- * @param {(row: object) => void} [onRowSelect] - 行クリック時に呼ばれるコールバック（地図側のピン強調に使う）
+ * @param {(rows: object[]) => void} [onSelectionChange] - 選択行が変わるたびに呼ばれるコールバック
+ *   （常に「選択中の行の配列」を渡す。地図側のピン強調・詳細表示に使う）
  */
-export function createTableController(tableEl, rowCountEl, onRowSelect) {
+export function createTableController(tableEl, rowCountEl, onSelectionChange) {
   const theadRow = tableEl.querySelector("thead tr");
   const tbody = tableEl.querySelector("tbody");
 
@@ -24,7 +25,7 @@ export function createTableController(tableEl, rowCountEl, onRowSelect) {
   let currentRows = [];
   let sortKey = null;
   let sortDir = "asc"; // "asc" | "desc"
-  let selectedKey = null;
+  let selectedKeys = new Set(); // 複数選択に対応するため配列ではなくSetで持つ
 
   function render() {
     // ---- ヘッダー描画 ----
@@ -67,17 +68,26 @@ export function createTableController(tableEl, rowCountEl, onRowSelect) {
     const fragment = document.createDocumentFragment();
     sortedRows.forEach((row) => {
       const tr = document.createElement("tr");
-      if (rowKey(row) === selectedKey) tr.classList.add("selected-row");
+      if (selectedKeys.has(rowKey(row))) tr.classList.add("selected-row");
       currentColumns.forEach((col) => {
         const td = document.createElement("td");
         const v = row[col.key];
         td.textContent = v === undefined || v === null ? "" : String(v);
         tr.appendChild(td);
       });
-      tr.addEventListener("click", () => {
-        selectedKey = rowKey(row);
+      tr.addEventListener("click", (e) => {
+        const key = rowKey(row);
+        if (e.ctrlKey || e.metaKey) {
+          // Ctrl（Macは⌘）を押しながらのクリックで複数選択をトグルする
+          if (selectedKeys.has(key)) selectedKeys.delete(key);
+          else selectedKeys.add(key);
+        } else {
+          selectedKeys = new Set([key]);
+        }
         render();
-        if (onRowSelect) onRowSelect(row);
+        if (onSelectionChange) {
+          onSelectionChange(currentRows.filter((r) => selectedKeys.has(rowKey(r))));
+        }
       });
       fragment.appendChild(tr);
     });
@@ -92,7 +102,7 @@ export function createTableController(tableEl, rowCountEl, onRowSelect) {
       currentColumns = columns;
       currentRows = rows;
       sortKey = null;
-      selectedKey = null;
+      selectedKeys = new Set();
       render();
     },
     /** 現在ソート済みの行データを取得する（CSV/GeoJSONダウンロード用） */

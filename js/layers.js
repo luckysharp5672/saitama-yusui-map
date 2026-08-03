@@ -413,13 +413,25 @@ export function addHighlightLayer(map) {
   });
 }
 
-/** 強調表示する地点を設定する。lngLat に null を渡すと強調を消す。 */
-export function setHighlight(map, lngLat) {
+/**
+ * 強調表示する地点を設定する（複数選択時は複数地点を同時に強調できる）。
+ * @param {maplibregl.Map} map
+ * @param {[number, number] | [number, number][] | null} lngLatOrList - 単一の[lng,lat]、
+ *   複数選択時は[lng,lat]の配列、強調を消す場合はnullまたは空配列
+ */
+export function setHighlight(map, lngLatOrList) {
   const source = map.getSource("highlight");
   if (!source) return;
-  const features = lngLat
-    ? [{ type: "Feature", geometry: { type: "Point", coordinates: lngLat }, properties: {} }]
-    : [];
+  const list = !lngLatOrList
+    ? []
+    : Array.isArray(lngLatOrList[0])
+      ? lngLatOrList
+      : [lngLatOrList];
+  const features = list.map((lngLat) => ({
+    type: "Feature",
+    geometry: { type: "Point", coordinates: lngLat },
+    properties: {}
+  }));
   source.setData({ type: "FeatureCollection", features });
 }
 
