@@ -67,6 +67,10 @@ function openDetailPopup(lngLat, html) {
   const popup = new maplibregl.Popup({ closeButton: true }).setLngLat(lngLat).setHTML(html).addTo(map);
   const el = popup.getElement();
 
+  // 内容が長くスクロールが必要な場合でも、開いた瞬間は必ず先頭から見えるようにする
+  const scrollableContent = el.querySelector(".spring-popup");
+  if (scrollableContent) scrollableContent.scrollTop = 0;
+
   const recordBtn = el.querySelector(".popup-record-survey-btn");
   if (recordBtn) {
     recordBtn.addEventListener("click", () => {
