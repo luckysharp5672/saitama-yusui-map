@@ -40,14 +40,37 @@ const state = {
   wetlandOnlySprings: false
 };
 
+// パン・ズームの完了(moveend)を待ってから詳細情報を表示するため、
+// 直前に登録した待ち受けが残っていれば解除できるよう参照を保持しておく
+// （行を連続してクリックしたときに、古い選択の詳細が後から出てしまうのを防ぐため）
+let pendingRowSelectMoveEnd = null;
+
 /**
  * 下部テーブルの行がクリックされたときの処理。
- * 選択地点を地図上でリング状に強調表示し、その地点が画面内に収まるよう地図を移動する。
+ * 選択地点を地図上でリング状に強調表示し、その地点が画面内に収まるよう地図を移動したうえで、
+ * 移動が完了した後にその地点の詳細情報（ポップアップ／スコア内訳パネル）を自動で表示する。
  */
 function handleTableRowSelect(row) {
   if (row.lng == null || row.lat == null) return;
   const lngLat = [row.lng, row.lat];
   setHighlight(map, lngLat);
+
+  if (pendingRowSelectMoveEnd) {
+    map.off("moveend", pendingRowSelectMoveEnd);
+    pendingRowSelectMoveEnd = null;
+  }
+  pendingRowSelectMoveEnd = () => {
+    pendingRowSelectMoveEnd = null;
+    if (state.activeTab === "springs") {
+      new maplibregl.Popup({ closeButton: true }).setLngLat(lngLat).setHTML(buildSpringPopupHTML(row)).addTo(map);
+    } else if (state.activeTab === "wetland1997") {
+      new maplibregl.Popup({ closeButton: true }).setLngLat(lngLat).setHTML(buildWetland1997PopupHTML(row)).addTo(map);
+    } else if (state.activeTab === "potential") {
+      showInfoPanel(row);
+    }
+  };
+  map.once("moveend", pendingRowSelectMoveEnd);
+
   map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13), duration: 600 });
 }
 
