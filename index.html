@@ -47,54 +47,7 @@
         </div>
       </section>
 
-      <!-- 2. 湧水ポテンシャルスコア -->
-      <section class="layer-group">
-        <div class="layer-header">
-          <label>
-            <input type="checkbox" id="toggle-potential" checked />
-            湧水ポテンシャルスコア
-          </label>
-        </div>
-        <div class="layer-controls">
-          <label class="slider-label">
-            不透明度
-            <input type="range" id="opacity-potential" min="0" max="1" step="0.05" value="0.75" />
-          </label>
-          <label class="slider-label">
-            表示閾値（スコア <span id="threshold-value">0.00</span> 以上）
-            <input type="range" id="threshold-potential" min="0" max="1" step="0.01" value="0" />
-          </label>
-          <div class="legend legend-sequential" id="legend-potential">
-            <span>0</span><span class="legend-bar legend-bar-blue"></span><span>1</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. 週別降水量 -->
-      <section class="layer-group">
-        <div class="layer-header">
-          <label>
-            <input type="checkbox" id="toggle-rainfall" />
-            週別降水量
-          </label>
-        </div>
-        <div class="layer-controls">
-          <label class="slider-label">
-            不透明度
-            <input type="range" id="opacity-rainfall" min="0" max="1" step="0.05" value="0.7" />
-          </label>
-          <div class="week-controls">
-            <button id="week-play" class="icon-button" title="週送りアニメーション再生/停止">▶ 再生</button>
-            <input type="range" id="week-slider" min="0" max="51" step="1" value="0" />
-            <span id="week-label">----/--/--</span>
-          </div>
-          <div class="legend legend-sequential" id="legend-rainfall">
-            <span>少</span><span class="legend-bar legend-bar-orange"></span><span>多</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. 1997年 埼玉県湿地湧水地台帳（歴史データ） -->
+      <!-- 2. 1997年 埼玉県湿地湧水地台帳（歴史データ） -->
       <section class="layer-group">
         <div class="layer-header">
           <label>
@@ -128,7 +81,30 @@
         </div>
       </section>
 
-      <!-- 5. 背景地形レイヤー -->
+      <!-- 3. 湧水ポテンシャルスコア -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-potential" checked />
+            湧水ポテンシャルスコア
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-potential" min="0" max="1" step="0.05" value="0.75" />
+          </label>
+          <label class="slider-label">
+            表示閾値（スコア <span id="threshold-value">0.00</span> 以上）
+            <input type="range" id="threshold-potential" min="0" max="1" step="0.01" value="0" />
+          </label>
+          <div class="legend legend-sequential" id="legend-potential">
+            <span>0</span><span class="legend-bar legend-bar-blue"></span><span>1</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 背景地形レイヤー -->
       <section class="layer-group">
         <div class="layer-header"><strong>背景地形</strong></div>
         <div class="layer-controls">
@@ -148,6 +124,30 @@
             不透明度
             <input type="range" id="opacity-slope" min="0" max="1" step="0.05" value="0.6" />
           </label>
+        </div>
+      </section>
+
+      <!-- 5. 週別降水量 -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-rainfall" />
+            週別降水量
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-rainfall" min="0" max="1" step="0.05" value="0.7" />
+          </label>
+          <div class="week-controls">
+            <button id="week-play" class="icon-button" title="週送りアニメーション再生/停止">▶ 再生</button>
+            <input type="range" id="week-slider" min="0" max="51" step="1" value="0" />
+            <span id="week-label">----/--/--</span>
+          </div>
+          <div class="legend legend-sequential" id="legend-rainfall">
+            <span>少</span><span class="legend-bar legend-bar-orange"></span><span>多</span>
+          </div>
         </div>
       </section>
 
