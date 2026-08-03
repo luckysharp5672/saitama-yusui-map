@@ -78,6 +78,31 @@
   （例: 「湧水」「井戸」「滝」を含む → `湧水・井戸`）。厳密な分類ではない点に留意してください。
 - 地図上では `category` で色分けし、`status_note` が入っている地点は赤い太枠で強調表示しています。
 
+## field_survey.geojson — 現地調査記録（あなたが記録するデータ）
+
+`springs.geojson` / `wetland_1997.geojson` の**元データは書き換えず**、現地で確認した
+最新の位置・現況をこのファイルに追記していく運用です。1地点を複数回訪れた場合も
+上書きせず、訪問ごとに別レコードとして残します（履歴として追える append-only 形式）。
+
+通常は手で編集せず、アプリ内の「現地調査を記録」フォームで下書きをブラウザに保存し、
+「現地調査記録」タブの GeoJSONダウンロードで書き出したファイルをこのパスに上書きします
+（詳しい手順は [../README.md](../README.md#現地調査記録機能の使い方) 参照）。Point Feature の配列。
+
+| プロパティ | 内容 |
+|---|---|
+| `id` | 一意なID（`fieldsurvey_<timestamp>_<乱数>`） |
+| `target_dataset` | 対象データセット（`springs` / `wetland1997` / `new`＝データに無い新規発見地点） |
+| `target_id` | ひも付け先の `springs.geojson`/`wetland_1997.geojson` の `id`（新規地点は `null`） |
+| `target_name` | 表示用の地点名（新規地点は現地で付けた名称） |
+| `status` | 現況（`湧出中` / `枯渇` / `不明` / `要再訪`） |
+| `surveyed_at` | 確認日（`YYYY-MM-DD`） |
+| `surveyor` | 調査者（任意） |
+| `address_note` | 所在地に関する現地メモ（任意） |
+| `notes` | 備考（任意） |
+| `photo_url` | 写真へのリンク（任意。画像ファイル自体は保存しない） |
+
+初期状態は空の `FeatureCollection` です。
+
 ## potential_grid.geojson — 湧水ポテンシャルスコアグリッド
 
 `scripts/compute_potential.py` の出力形式。Polygon Feature（グリッドセル）の配列。

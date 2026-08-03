@@ -32,6 +32,8 @@
 
 * { box-sizing: border-box; }
 
+.hidden { display: none !important; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -205,6 +207,57 @@ button:hover { background: var(--border); }
 .spring-popup table { font-size: 11px; border-collapse: collapse; width: 100%; }
 .spring-popup td { padding: 2px 4px; vertical-align: top; }
 .spring-popup td:first-child { color: #666; white-space: nowrap; }
+
+.popup-actions { margin-top: 8px; padding-top: 8px; border-top: 1px solid #eee; display: flex; }
+.popup-actions button {
+  font-size: 11px;
+  width: 100%;
+  padding: 6px 8px;
+}
+.popup-delete-draft-btn { color: #b8431a; border-color: #eecfc0; }
+.fieldsurvey-popup-badge { font-size: 10px; color: #008300; font-weight: 700; margin: 0 0 6px; }
+
+/* ---------- 現地調査記録フォーム（モーダル） ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 11, 11, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 16px;
+}
+.modal-dialog {
+  background: var(--surface-1);
+  border-radius: 10px;
+  padding: 16px 20px 20px;
+  width: 100%;
+  max-width: 420px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.form-field { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--text-secondary); margin-top: 10px; }
+.form-field input, .form-field select, .form-field textarea {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+.form-field textarea { resize: vertical; }
+.form-row { display: flex; gap: 10px; }
+.form-row .form-field { flex: 1; }
+
+.secondary-button { width: 100%; margin-top: 10px; }
+
+.form-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.form-actions button[type="submit"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.form-actions button[type="submit"]:hover { background: var(--accent-dark); }
 
 /* ---------- レスポンシブ（最低限、モバイルでも崩れない程度） ---------- */
 @media (max-width: 880px) {

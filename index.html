@@ -151,6 +151,35 @@
         </div>
       </section>
 
+      <!-- 6. 現地調査記録（あなたが記録するデータ） -->
+      <section class="layer-group">
+        <div class="layer-header">
+          <label>
+            <input type="checkbox" id="toggle-fieldsurvey" checked />
+            現地調査記録
+          </label>
+        </div>
+        <div class="layer-controls">
+          <label class="slider-label">
+            不透明度
+            <input type="range" id="opacity-fieldsurvey" min="0" max="1" step="0.05" value="1" />
+          </label>
+          <div class="wetland-legend">
+            <span><i class="wetland-dot" style="background:#008300"></i>✓ 確認済み</span>
+            <span><i class="wetland-dot" style="background:#d03b3b"></i>! 要再訪</span>
+          </div>
+          <button id="btn-open-new-survey" type="button">＋ 現地調査を記録（新規地点）</button>
+          <button id="btn-clear-survey-drafts" type="button" class="secondary-button">🗑 下書きを全て消去</button>
+          <p class="panel-note panel-note-inline">
+            既存の湧水地点・1997年湿地台帳のポップアップにある「📝 現地調査を記録」からも記録できます
+            （その場合は対象地点にひも付きます）。入力内容はこの端末のブラウザに下書きとして保存され、
+            サーバーには送信されません。下部パネルの「現地調査記録」タブから、まとめてGeoJSON
+            としてエクスポートし、<code>data/field_survey.geojson</code> を更新してください
+            （手順は <a href="README.md#現地調査記録機能の使い方" target="_blank" rel="noopener">web/README.md</a> 参照）。
+          </p>
+        </div>
+      </section>
+
       <p class="panel-note">
         ※ 既知湧水地点（環境省公表データ）と1997年湿地湧水地台帳（Atlas Eco Saitama公表データ）は
         実データです。湧水ポテンシャルスコア・週別降水量は現状ダミーデータです。実データへの
@@ -183,8 +212,10 @@
         <button class="tab-button active" data-tab="springs">既知湧水地点</button>
         <button class="tab-button" data-tab="potential">ポテンシャルグリッド</button>
         <button class="tab-button" data-tab="wetland1997">1997年湿地台帳</button>
+        <button class="tab-button" data-tab="fieldsurvey">現地調査記録</button>
       </div>
       <div class="table-panel-actions">
+        <span id="fieldsurvey-export-note" class="row-count hidden">全件をエクスポートします（data/field_survey.geojsonの置き換え用）</span>
         <span id="table-row-count" class="row-count"></span>
         <button id="btn-download-csv">CSVダウンロード</button>
         <button id="btn-download-geojson">GeoJSONダウンロード</button>
@@ -200,6 +231,83 @@
       </div>
     </div>
   </section>
+
+  <!-- ==================== 現地調査記録フォーム（モーダル） ==================== -->
+  <div id="survey-form-overlay" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="panel-header-row">
+        <h2 id="survey-form-title">現地調査を記録</h2>
+        <button id="survey-form-close" class="icon-button" type="button" title="閉じる">✕</button>
+      </div>
+      <form id="survey-form">
+        <input type="hidden" id="survey-target-dataset" />
+        <input type="hidden" id="survey-target-id" />
+
+        <label class="form-field">
+          対象地点
+          <input type="text" id="survey-target-name" placeholder="例: 三貫清水（新規地点の場合は現地で確認した名称を入力）" required />
+        </label>
+
+        <div class="form-row">
+          <label class="form-field">
+            確認日
+            <input type="date" id="survey-date" required />
+          </label>
+          <label class="form-field">
+            現況
+            <select id="survey-status" required>
+              <option value="湧出中">湧出中</option>
+              <option value="枯渇">枯渇</option>
+              <option value="不明">不明</option>
+              <option value="要再訪">要再訪</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="form-field">
+            経度
+            <input type="number" id="survey-lng" step="0.000001" required />
+          </label>
+          <label class="form-field">
+            緯度
+            <input type="number" id="survey-lat" step="0.000001" required />
+          </label>
+        </div>
+        <button type="button" id="survey-use-gps" class="secondary-button">📍 現在地を取得して位置を入力</button>
+
+        <label class="form-field">
+          所在地メモ
+          <input type="text" id="survey-address-note" placeholder="例: 公表データの住所より50mほど東の沢沿い" />
+        </label>
+
+        <label class="form-field">
+          調査者
+          <input type="text" id="survey-surveyor" placeholder="任意" />
+        </label>
+
+        <label class="form-field">
+          備考
+          <textarea id="survey-notes" rows="3" placeholder="現況の詳細、周辺状況など"></textarea>
+        </label>
+
+        <label class="form-field">
+          写真URL
+          <input type="url" id="survey-photo-url" placeholder="任意（Google Photos等のリンク）" />
+        </label>
+
+        <p class="panel-note">
+          ※ この内容はサーバーに送信されず、この端末のブラウザ内に「下書き」として保存されます。
+          下部パネルの「現地調査記録」タブからエクスポートし、リポジトリに反映してください。
+        </p>
+
+        <div class="form-actions">
+          <button type="button" id="survey-form-cancel" class="secondary-button">キャンセル</button>
+          <button type="submit">下書きに保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- アプリ本体スクリプト（ESモジュール。file://直開きではCORSで動かないため、
        README記載のローカルサーバー経由で開いてください） -->

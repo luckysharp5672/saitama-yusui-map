@@ -159,6 +159,18 @@ export function buildSpringPopupHTML(props) {
         ${rows.map(([label, value]) => `<tr><td>${escapeHTML(label)}</td><td>${escapeHTML(value)}</td></tr>`).join("")}
       </table>
       ${props.accuracy === "おおよそ" && props.position_note ? `<p class="spring-popup-note">${escapeHTML(props.position_note)}</p>` : ""}
+      ${buildRecordSurveyButton("springs", props.id, props.name)}
+    </div>`;
+}
+
+/** 「現地調査を記録」ボタンのHTML片。クリック時の処理はmain.js側でイベント委譲して配線する。 */
+function buildRecordSurveyButton(targetDataset, targetId, targetName) {
+  return `
+    <div class="popup-actions">
+      <button type="button" class="popup-record-survey-btn"
+        data-target-dataset="${escapeHTML(targetDataset)}"
+        data-target-id="${escapeHTML(targetId)}"
+        data-target-name="${escapeHTML(targetName)}">📝 現地調査を記録</button>
     </div>`;
 }
 
@@ -236,6 +248,7 @@ export function buildWetland1997PopupHTML(props) {
         ${rows.map(([label, value]) => `<tr><td>${escapeHTML(label)}</td><td>${escapeHTML(value)}</td></tr>`).join("")}
       </table>
       <p class="spring-popup-note">${escapeHTML(props.data_note)}</p>
+      ${buildRecordSurveyButton("wetland1997", props.id, props.name)}
     </div>`;
 }
 
@@ -289,6 +302,81 @@ export function addRainfallLayer(map, rainfallData, weekIndex) {
 export function updateRainfallWeek(map, rainfallData, weekIndex) {
   const source = map.getSource("rainfall");
   if (source) source.setData(buildRainfallGeoJSON(rainfallData, weekIndex));
+}
+
+// ---- 現地調査記録レイヤー ----
+// 既存データ（既知湧水地点・1997年湿地台帳）は書き換えず、現地で確認した内容を
+// 別レイヤーとしてその上に重ねて表示する。「✓」＝確認済み、「！」＝要再訪、で色分けする。
+
+/**
+ * 現地調査記録のポイントレイヤーを追加する（二重の円で「バッジ」らしく見せる構成）。
+ * ベースの背景地図タイル（GSI標準地図のみ）にはフォントグリフ（glyphs）の設定が無く、
+ * MapLibreのsymbolレイヤー（text-field）は使えないため、色分けのみで表現している
+ * （緑＝確認済み、赤＝要再訪。既存レイヤーの色分けパターンと合わせてある）。
+ * データが無い（features: []）状態で先に追加しておき、記録が増えるたびに
+ * updateFieldSurveyData() でソースを差し替える。
+ */
+export function addFieldSurveyLayer(map, geojson) {
+  map.addSource("fieldsurvey", { type: "geojson", data: geojson });
+
+  const statusColor = ["case", ["==", ["get", "status"], "要再訪"], "#d03b3b", "#008300"];
+
+  map.addLayer({
+    id: "fieldsurvey-badge-outer",
+    type: "circle",
+    source: "fieldsurvey",
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 8, 14, 14],
+      "circle-color": "transparent",
+      "circle-stroke-width": 2,
+      "circle-stroke-color": statusColor
+    }
+  });
+  map.addLayer({
+    id: "fieldsurvey-badge-inner",
+    type: "circle",
+    source: "fieldsurvey",
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 4, 14, 7],
+      "circle-color": statusColor,
+      "circle-stroke-width": 1.5,
+      "circle-stroke-color": "#ffffff"
+    }
+  });
+}
+
+/** 現地調査記録レイヤーのデータを差し替える（記録の追加・削除のたびに呼ぶ） */
+export function updateFieldSurveyData(map, geojson) {
+  const source = map.getSource("fieldsurvey");
+  if (source) source.setData(geojson);
+}
+
+const TARGET_DATASET_LABEL = { springs: "既知湧水地点", wetland1997: "1997年湿地台帳", new: "新規地点（現地発見）" };
+
+/** 現地調査記録クリック時に表示するポップアップHTMLを組み立てる */
+export function buildFieldSurveyPopupHTML(props) {
+  const rows = [
+    ["対象データ", TARGET_DATASET_LABEL[props.target_dataset] || props.target_dataset],
+    ["確認日", props.surveyed_at],
+    ["現況", props.status],
+    props.surveyor ? ["調査者", props.surveyor] : null,
+    props.address_note ? ["所在地メモ", props.address_note] : null,
+    props.photo_url ? ["写真", `<a href="${escapeHTML(props.photo_url)}" target="_blank" rel="noopener">リンクを開く</a>`] : null
+  ].filter(Boolean);
+
+  return `
+    <div class="spring-popup">
+      <h3>${escapeHTML(props.target_name || "(名称未記入)")}</h3>
+      <p class="fieldsurvey-popup-badge">📝 現地調査記録${props.is_draft ? "（未エクスポートの下書き）" : ""}</p>
+      <table>
+        ${rows.map(([label, value]) => `<tr><td>${escapeHTML(label)}</td><td>${label === "写真" ? value : escapeHTML(value)}</td></tr>`).join("")}
+      </table>
+      ${props.notes ? `<p class="spring-popup-desc">${escapeHTML(props.notes)}</p>` : ""}
+      ${props.is_draft ? `
+        <div class="popup-actions">
+          <button type="button" class="popup-delete-draft-btn" data-draft-id="${escapeHTML(props.id)}">🗑 この下書きを削除</button>
+        </div>` : ""}
+    </div>`;
 }
 
 // ---- 選択強調表示（下部テーブルの行クリック時に、対応するピンを地図上で目立たせる） ----

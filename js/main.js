@@ -7,11 +7,13 @@ import {
   buildInitialStyle, addTerrainLayers, addPotentialLayer, setPotentialThreshold,
   addSpringsLayer, buildSpringPopupHTML, addRainfallLayer, updateRainfallWeek,
   addWetland1997Layer, setWetland1997CategoryFilter, buildWetland1997PopupHTML,
+  addFieldSurveyLayer, updateFieldSurveyData, buildFieldSurveyPopupHTML,
   addHighlightLayer, setHighlight,
   setLayerVisible, setLayerOpacity
 } from "./layers.js";
 import { createTableController } from "./table.js";
 import { downloadCSV, downloadGeoJSON } from "./export.js";
+import { createFieldSurveyStore, mergeFieldSurveyData } from "./fieldSurvey.js";
 
 // 地図の初期表示範囲: 埼玉県秩父地域・横瀬町周辺
 const INITIAL_CENTER = [139.10, 35.98];
@@ -33,12 +35,61 @@ const state = {
   potentialData: null,
   rainfallData: null,
   wetlandData: null,
+  fieldSurveyLoadedData: null, // data/field_survey.geojson から読み込んだ「確定済み」の記録
   activeTab: "springs",
   threshold: 0,
   weekIndex: 0,
   playTimer: null,
   wetlandOnlySprings: false
 };
+
+// 現地調査の下書き（ブラウザのlocalStorageに保存）を管理するストア
+const fieldSurveyStore = createFieldSurveyStore();
+
+/** 確定済みデータ + ローカル下書きをマージした、表示・エクスポート用の現地調査記録一式を返す */
+function getCombinedFieldSurveyData() {
+  return mergeFieldSurveyData(state.fieldSurveyLoadedData, fieldSurveyStore.getDrafts());
+}
+
+/** 下書きの追加・削除のたびに呼ぶ: 地図上のバッジを更新し、テーブルを開いていれば再描画する */
+function refreshFieldSurveyLayer() {
+  const combined = getCombinedFieldSurveyData();
+  if (map.getSource("fieldsurvey")) updateFieldSurveyData(map, combined);
+  if (state.activeTab === "fieldsurvey") refreshTable();
+}
+
+/**
+ * ポップアップを開き、中に含まれる「📝 現地調査を記録」「🗑 下書きを削除」ボタンを配線する。
+ * ポップアップHTMLはlayers.js側で文字列として組み立てているため、DOMに挿入された後に
+ * イベントリスナーを付け直す必要がある（=イベント委譲）。
+ */
+function openDetailPopup(lngLat, html) {
+  const popup = new maplibregl.Popup({ closeButton: true }).setLngLat(lngLat).setHTML(html).addTo(map);
+  const el = popup.getElement();
+
+  const recordBtn = el.querySelector(".popup-record-survey-btn");
+  if (recordBtn) {
+    recordBtn.addEventListener("click", () => {
+      const { targetDataset, targetId, targetName } = recordBtn.dataset;
+      const clickedAt = popup.getLngLat();
+      popup.remove();
+      openSurveyForm({ targetDataset, targetId, targetName, lngLat: clickedAt });
+    });
+  }
+
+  const deleteBtn = el.querySelector(".popup-delete-draft-btn");
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      if (window.confirm("この現地調査記録の下書きを削除しますか？（この端末に保存されているだけの下書きです）")) {
+        fieldSurveyStore.deleteDraft(deleteBtn.dataset.draftId);
+        refreshFieldSurveyLayer();
+        popup.remove();
+      }
+    });
+  }
+
+  return popup;
+}
 
 // パン・ズームの完了(moveend)を待ってから詳細情報を表示するため、
 // 直前に登録した待ち受けが残っていれば解除できるよう参照を保持しておく
@@ -62,9 +113,11 @@ function handleTableRowSelect(row) {
   pendingRowSelectMoveEnd = () => {
     pendingRowSelectMoveEnd = null;
     if (state.activeTab === "springs") {
-      new maplibregl.Popup({ closeButton: true }).setLngLat(lngLat).setHTML(buildSpringPopupHTML(row)).addTo(map);
+      openDetailPopup(lngLat, buildSpringPopupHTML(row));
     } else if (state.activeTab === "wetland1997") {
-      new maplibregl.Popup({ closeButton: true }).setLngLat(lngLat).setHTML(buildWetland1997PopupHTML(row)).addTo(map);
+      openDetailPopup(lngLat, buildWetland1997PopupHTML(row));
+    } else if (state.activeTab === "fieldsurvey") {
+      openDetailPopup(lngLat, buildFieldSurveyPopupHTML(row));
     } else if (state.activeTab === "potential") {
       showInfoPanel(row);
     }
@@ -116,6 +169,18 @@ const WETLAND_COLUMNS = [
   { key: "lat", label: "緯度" }
 ];
 
+const FIELDSURVEY_COLUMNS = [
+  { key: "target_name", label: "対象地点" },
+  { key: "surveyed_at", label: "確認日" },
+  { key: "status", label: "現況" },
+  { key: "address_note", label: "所在地メモ" },
+  { key: "surveyor", label: "調査者" },
+  { key: "notes", label: "備考" },
+  { key: "record_state", label: "状態" },
+  { key: "lng", label: "経度" },
+  { key: "lat", label: "緯度" }
+];
+
 /** ポリゴンの重心（各頂点の単純平均。正方形グリッドなので十分な精度） */
 function polygonCentroid(coordinates) {
   const ring = coordinates[0];
@@ -134,6 +199,12 @@ function pointFeatureToRow(f) {
 function potentialFeatureToRow(f) {
   const [lng, lat] = polygonCentroid(f.geometry.coordinates);
   return { ...f.properties, lng: Number(lng.toFixed(5)), lat: Number(lat.toFixed(5)) };
+}
+/** 現地調査記録用: is_draft(真偽値)を表示用の文字列に変換してから行データにする */
+function fieldSurveyFeatureToRow(f) {
+  const row = pointFeatureToRow(f);
+  row.record_state = row.is_draft ? "下書き（未エクスポート）" : "確定済み";
+  return row;
 }
 
 /** 現在のスコア閾値でフィルタしたポテンシャルグリッドのfeature配列を返す */
@@ -157,9 +228,12 @@ function refreshTable() {
   } else if (state.activeTab === "potential") {
     const rows = filteredPotentialFeatures().map(potentialFeatureToRow);
     tableController.setData(POTENTIAL_COLUMNS, rows);
-  } else {
+  } else if (state.activeTab === "wetland1997") {
     const rows = filteredWetlandFeatures().map(pointFeatureToRow);
     tableController.setData(WETLAND_COLUMNS, rows);
+  } else if (state.activeTab === "fieldsurvey") {
+    const rows = getCombinedFieldSurveyData().features.map(fieldSurveyFeatureToRow);
+    tableController.setData(FIELDSURVEY_COLUMNS, rows);
   }
 }
 
@@ -167,21 +241,26 @@ function refreshTable() {
 map.on("load", async () => {
   addTerrainLayers(map);
 
-  const [springs, potential, rainfall, wetland] = await Promise.all([
+  const [springs, potential, rainfall, wetland, fieldSurvey] = await Promise.all([
     fetch("data/springs.geojson").then((r) => r.json()),
     fetch("data/potential_grid.geojson").then((r) => r.json()),
     fetch("data/rainfall_weekly.json").then((r) => r.json()),
-    fetch("data/wetland_1997.geojson").then((r) => r.json())
+    fetch("data/wetland_1997.geojson").then((r) => r.json()),
+    // 現地調査記録（確定済み分）。まだ一度もエクスポートしていない場合でも
+    // 空のFeatureCollectionとして存在するようシードしてあるが、念のためフォールバックする
+    fetch("data/field_survey.geojson").then((r) => r.json()).catch(() => ({ type: "FeatureCollection", features: [] }))
   ]);
   state.springsData = springs;
   state.potentialData = potential;
   state.rainfallData = rainfall;
   state.wetlandData = wetland;
+  state.fieldSurveyLoadedData = fieldSurvey;
 
   addPotentialLayer(map, potential);
   addSpringsLayer(map, springs);
   addRainfallLayer(map, rainfall, 0);
   addWetland1997Layer(map, wetland);
+  addFieldSurveyLayer(map, getCombinedFieldSurveyData());
   addHighlightLayer(map); // 他のレイヤーより後に追加し、最前面に描画されるようにする
 
   updateWeekLabel();
@@ -190,10 +269,7 @@ map.on("load", async () => {
   // ---- 湧水地点クリック: ポップアップ表示 ----
   map.on("click", "springs-points", (e) => {
     const f = e.features[0];
-    new maplibregl.Popup({ closeButton: true })
-      .setLngLat(f.geometry.coordinates)
-      .setHTML(buildSpringPopupHTML(f.properties))
-      .addTo(map);
+    openDetailPopup(f.geometry.coordinates, buildSpringPopupHTML(f.properties));
   });
 
   // ---- ポテンシャルグリッドクリック: サイドパネルにスコア内訳表示 ----
@@ -204,13 +280,16 @@ map.on("load", async () => {
   // ---- 1997年湿地台帳クリック: ポップアップ表示 ----
   map.on("click", "wetland1997-points", (e) => {
     const f = e.features[0];
-    new maplibregl.Popup({ closeButton: true })
-      .setLngLat(f.geometry.coordinates)
-      .setHTML(buildWetland1997PopupHTML(f.properties))
-      .addTo(map);
+    openDetailPopup(f.geometry.coordinates, buildWetland1997PopupHTML(f.properties));
   });
 
-  ["springs-points", "potential-fill", "wetland1997-points"].forEach((layerId) => {
+  // ---- 現地調査記録クリック: ポップアップ表示 ----
+  map.on("click", "fieldsurvey-badge-outer", (e) => {
+    const f = e.features[0];
+    openDetailPopup(f.geometry.coordinates, buildFieldSurveyPopupHTML(f.properties));
+  });
+
+  ["springs-points", "potential-fill", "wetland1997-points", "fieldsurvey-badge-outer"].forEach((layerId) => {
     map.on("mouseenter", layerId, () => { map.getCanvas().style.cursor = "pointer"; });
     map.on("mouseleave", layerId, () => { map.getCanvas().style.cursor = ""; });
   });
@@ -338,6 +417,102 @@ document.getElementById("toggle-wetland1997-onlysprings").addEventListener("chan
   if (state.activeTab === "wetland1997") refreshTable();
 });
 
+// -- 現地調査記録 --
+document.getElementById("toggle-fieldsurvey").addEventListener("change", (e) => {
+  setLayerVisible(map, "fieldsurvey-badge-outer", e.target.checked);
+  setLayerVisible(map, "fieldsurvey-badge-inner", e.target.checked);
+});
+document.getElementById("opacity-fieldsurvey").addEventListener("input", (e) => {
+  setLayerOpacity(map, "fieldsurvey-badge-outer", Number(e.target.value), "circle-opacity");
+  setLayerOpacity(map, "fieldsurvey-badge-inner", Number(e.target.value), "circle-opacity");
+});
+document.getElementById("btn-open-new-survey").addEventListener("click", () => {
+  const center = map.getCenter();
+  openSurveyForm({ targetDataset: "new", targetId: null, targetName: "", lngLat: center });
+});
+document.getElementById("btn-clear-survey-drafts").addEventListener("click", () => {
+  const count = fieldSurveyStore.getDrafts().length;
+  if (count === 0) {
+    window.alert("削除する下書きはありません。");
+    return;
+  }
+  if (window.confirm(`下書き${count}件をこの端末から全て消去します。エクスポート済み（GeoJSONダウンロード＆commit/push済み）であることを確認してから実行してください。よろしいですか？`)) {
+    fieldSurveyStore.clearDrafts();
+    refreshFieldSurveyLayer();
+  }
+});
+
+// ============================================================
+// 現地調査記録フォーム（モーダル）の配線
+// ============================================================
+const surveyFormOverlay = document.getElementById("survey-form-overlay");
+const surveyForm = document.getElementById("survey-form");
+
+/** フォームを開き、対象地点の情報（あれば）で初期値を埋める */
+function openSurveyForm({ targetDataset, targetId, targetName, lngLat }) {
+  document.getElementById("survey-target-dataset").value = targetDataset;
+  document.getElementById("survey-target-id").value = targetId || "";
+  document.getElementById("survey-target-name").value = targetName || "";
+  document.getElementById("survey-date").value = new Date().toISOString().slice(0, 10);
+  document.getElementById("survey-status").value = "湧出中";
+  document.getElementById("survey-lng").value = lngLat.lng.toFixed(6);
+  document.getElementById("survey-lat").value = lngLat.lat.toFixed(6);
+  document.getElementById("survey-address-note").value = "";
+  document.getElementById("survey-surveyor").value = "";
+  document.getElementById("survey-notes").value = "";
+  document.getElementById("survey-photo-url").value = "";
+  document.getElementById("survey-form-title").textContent =
+    targetDataset === "new" ? "現地調査を記録（新規地点）" : `現地調査を記録: ${targetName}`;
+  surveyFormOverlay.classList.remove("hidden");
+  document.getElementById("survey-target-name").focus();
+}
+
+function closeSurveyForm() {
+  surveyFormOverlay.classList.add("hidden");
+}
+
+document.getElementById("survey-form-close").addEventListener("click", closeSurveyForm);
+document.getElementById("survey-form-cancel").addEventListener("click", closeSurveyForm);
+// 背景（オーバーレイ自身）をクリックしたときだけ閉じる。ダイアログ内のクリックでは閉じない。
+surveyFormOverlay.addEventListener("click", (e) => {
+  if (e.target === surveyFormOverlay) closeSurveyForm();
+});
+
+// GPSで現在地を取得し、経度・緯度欄に反映する（現地でGPS精度の位置を記録したいときに使う）
+document.getElementById("survey-use-gps").addEventListener("click", () => {
+  if (!navigator.geolocation) {
+    window.alert("この端末・ブラウザでは位置情報を取得できません。手入力してください。");
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      document.getElementById("survey-lng").value = pos.coords.longitude.toFixed(6);
+      document.getElementById("survey-lat").value = pos.coords.latitude.toFixed(6);
+    },
+    (err) => window.alert("現在地の取得に失敗しました: " + err.message),
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+});
+
+surveyForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  fieldSurveyStore.addDraft({
+    targetDataset: document.getElementById("survey-target-dataset").value || "new",
+    targetId: document.getElementById("survey-target-id").value || null,
+    targetName: document.getElementById("survey-target-name").value.trim(),
+    lng: Number(document.getElementById("survey-lng").value),
+    lat: Number(document.getElementById("survey-lat").value),
+    status: document.getElementById("survey-status").value,
+    surveyedAt: document.getElementById("survey-date").value,
+    surveyor: document.getElementById("survey-surveyor").value.trim(),
+    addressNote: document.getElementById("survey-address-note").value.trim(),
+    notes: document.getElementById("survey-notes").value.trim(),
+    photoUrl: document.getElementById("survey-photo-url").value.trim()
+  });
+  refreshFieldSurveyLayer();
+  closeSurveyForm();
+});
+
 // -- レイヤーパネルの表示切替（モバイル向け） --
 document.getElementById("toggle-layer-panel").addEventListener("click", () => {
   document.getElementById("layer-panel").classList.toggle("hidden");
@@ -354,6 +529,7 @@ document.querySelectorAll(".tab-button").forEach((btn) => {
     state.activeTab = btn.dataset.tab;
     refreshTable();
     setHighlight(map, null); // タブを切り替えたら、別データセットの地点を指したままにならないよう強調表示を消す
+    document.getElementById("fieldsurvey-export-note").classList.toggle("hidden", state.activeTab !== "fieldsurvey");
   });
 });
 
@@ -367,11 +543,18 @@ document.getElementById("toggle-table-panel").addEventListener("click", (e) => {
 document.getElementById("btn-download-csv").addEventListener("click", () => {
   const columns = tableController.getColumns();
   const rows = tableController.getSortedRows();
-  const filenames = { springs: "springs.csv", potential: "potential_grid.csv", wetland1997: "wetland_1997.csv" };
+  const filenames = {
+    springs: "springs.csv",
+    potential: "potential_grid.csv",
+    wetland1997: "wetland_1997.csv",
+    fieldsurvey: "field_survey.csv"
+  };
   downloadCSV(columns, rows, filenames[state.activeTab]);
 });
 
-// ---- GeoJSONダウンロード: 現在の地図表示範囲 × 選択レイヤーのフィルタ条件に合致するデータを出力 ----
+// ---- GeoJSONダウンロード ----
+// springs/potential/wetland1997タブ: 現在の地図表示範囲×フィルタ条件に合致するデータを出力
+// fieldsurveyタブ: data/field_survey.geojson をそのまま置き換えられるよう、表示範囲に関わらず全件を出力
 document.getElementById("btn-download-geojson").addEventListener("click", () => {
   const bounds = map.getBounds();
 
@@ -386,8 +569,10 @@ document.getElementById("btn-download-geojson").addEventListener("click", () => 
       return bounds.contains(centroid);
     });
     downloadGeoJSON({ type: "FeatureCollection", features }, "potential_grid_export.geojson");
-  } else {
+  } else if (state.activeTab === "wetland1997") {
     const features = filteredWetlandFeatures().filter((f) => bounds.contains(f.geometry.coordinates));
     downloadGeoJSON({ type: "FeatureCollection", features }, "wetland_1997_export.geojson");
+  } else {
+    downloadGeoJSON(getCombinedFieldSurveyData(), "field_survey.geojson");
   }
 });
